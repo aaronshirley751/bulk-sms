@@ -1,22 +1,24 @@
-<<<<<<< HEAD
-# bulk-sms
-=======
-# Salesforce DX Project: Next Steps
+# Bulk-SMS
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+Bulk-SMS is a tool for managing and sending SMS messages efficiently. This project includes custom objects such as `SMS_History__c` and `SMS_Log__c` to track message history and logs.
 
-## How Do You Plan to Deploy Your Changes?
+## Features
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+- Send bulk SMS messages
+- Track SMS history
+- Log SMS activity
 
-## Configure Your Salesforce DX Project
+## Getting Started
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+1. Clone the repository.
+2. Install dependencies.
+3. Configure your SMS provider.
 
-## Read All About It
+## Custom Objects
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
->>>>>>> 5968f4c (feat(phase1): add SMS_History__c & SMS_Log__c custom objects)
+- **SMS_History__c**: Stores details of sent messages.
+- **SMS_Log__c**: Logs SMS events and errors.
+
+## License
+
+MIT

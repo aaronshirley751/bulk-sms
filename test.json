@@ -1,0 +1,212 @@
+{
+  "status": 1,
+  "result": [
+    {
+      "columnNumber": "1",
+      "lineNumber": "7",
+      "error": "Unexpected token '@'. (7:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "1",
+      "lineNumber": "7",
+      "error": "Unexpected token '@'. (7:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "1",
+      "lineNumber": "8",
+      "error": "Unexpected token 'private'. (8:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "39",
+      "lineNumber": "8",
+      "error": "Missing ';' at '{' (8:39)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "3",
+      "lineNumber": "9",
+      "error": "Unexpected token '@'. (9:3)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "3",
+      "lineNumber": "9",
+      "error": "Unexpected token '@'. (9:3)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "3",
+      "lineNumber": "10",
+      "error": "Unexpected token 'static'. (10:3)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "15",
+      "lineNumber": "10",
+      "error": "Missing ';' at 'testRender' (10:15)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "28",
+      "lineNumber": "10",
+      "error": "Missing ';' at '{' (10:28)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "1",
+      "lineNumber": "28",
+      "error": "Expecting '}' but was: '<EOF>' (28:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "17",
+      "lineNumber": "4",
+      "error": "Method must have a body (4:17)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    }
+  ],
+  "name": "DeployFailed",
+  "message": "Deploy failed.",
+  "exitCode": 1,
+  "actions": [],
+  "commandName": "SourceDeployCommand",
+  "data": [
+    {
+      "columnNumber": "1",
+      "lineNumber": "7",
+      "error": "Unexpected token '@'. (7:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "1",
+      "lineNumber": "7",
+      "error": "Unexpected token '@'. (7:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "1",
+      "lineNumber": "8",
+      "error": "Unexpected token 'private'. (8:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "39",
+      "lineNumber": "8",
+      "error": "Missing ';' at '{' (8:39)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "3",
+      "lineNumber": "9",
+      "error": "Unexpected token '@'. (9:3)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "3",
+      "lineNumber": "9",
+      "error": "Unexpected token '@'. (9:3)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "3",
+      "lineNumber": "10",
+      "error": "Unexpected token 'static'. (10:3)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "15",
+      "lineNumber": "10",
+      "error": "Missing ';' at 'testRender' (10:15)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "28",
+      "lineNumber": "10",
+      "error": "Missing ';' at '{' (10:28)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "1",
+      "lineNumber": "28",
+      "error": "Expecting '}' but was: '<EOF>' (28:1)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    },
+    {
+      "columnNumber": "17",
+      "lineNumber": "4",
+      "error": "Method must have a body (4:17)",
+      "fullName": "SMS_TemplateServiceTest",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\SMS_TemplateServiceTest.cls",
+      "problemType": "Error"
+    }
+  ],
+  "stack": "DeployFailed: Deploy failed.\n    at C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\salesforce-alm\\dist\\lib\\source\\sourceApiCommand.js:71:31\n    at async SourceDeployCommand.execLegacyCommand (C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\salesforce-alm\\dist\\ToolbeltCommand.js:149:29)\n    at async SourceDeployCommand.run (C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\salesforce-alm\\dist\\commands\\force\\source\\deploy.js:32:16)\n    at async SourceDeployCommand._run (C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\@salesforce\\command\\lib\\sfdxCommand.js:81:40)\n    at async Config.runCommand (C:\\Users\\tasms\\AppData\\Local\\nvm\\v18.20.8\\node_modules\\@salesforce\\cli\\node_modules\\@oclif\\core\\lib\\config\\config.js:456:25)\n    at async run (C:\\Users\\tasms\\AppData\\Local\\nvm\\v18.20.8\\node_modules\\@salesforce\\cli\\node_modules\\@oclif\\core\\lib\\main.js:96:16)\n    at async file:///C:/Users/tasms/AppData/Local/nvm/v18.20.8/node_modules/@salesforce/cli/bin/run.js:15:1",
+  "warnings": []
+}
