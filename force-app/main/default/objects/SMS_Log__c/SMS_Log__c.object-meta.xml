@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>SMS Log</label>
+    <pluralLabel>SMS Logs</pluralLabel>
+
+    <!-- Auto-number primary key -->
+    <nameField>
+        <label>SMS Log #</label>
+        <type>AutoNumber</type>
+    </nameField>
+
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <enableActivities>true</enableActivities>
+    <enableReports>true</enableReports>
+
+    <!-- Summary metrics -->
+    <fields>
+        <fullName>Total_Records__c</fullName>
+        <label>Total Records</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>0</scale>
+    </fields>
+    <fields>
+        <fullName>Sent_Count__c</fullName>
+        <label>Sent Count</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>0</scale>
+    </fields>
+    <fields>
+        <fullName>Failed_Count__c</fullName>
+        <label>Failed Count</label>
+        <type>Number</type>
+        <precision>18</precision>
+        <scale>0</scale>
+    </fields>
+    <fields>
+        <fullName>Template_Used__c</fullName>
+        <label>Template Used</label>
+        <type>Text</type>
+        <length>255</length>
+    </fields>
+</CustomObject>

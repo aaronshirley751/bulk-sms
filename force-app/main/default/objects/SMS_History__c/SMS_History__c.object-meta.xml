@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>SMS History</label>
+    <pluralLabel>SMS Histories</pluralLabel>
+
+    <!-- Auto-number primary key -->
+    <nameField>
+        <label>SMS History #</label>
+        <type>AutoNumber</type>
+    </nameField>
+
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ReadWrite</sharingModel>
+    <enableActivities>true</enableActivities>
+    <enableReports>true</enableReports>
+
+    <!-- Lookups -->
+    <!-- Contact lookup -->
+    <fields>
+        <fullName>Contact__c</fullName>
+        <label>Contact</label>
+        <type>Lookup</type>
+        <referenceTo>Contact</referenceTo>
+        <relationshipLabel>Contact</relationshipLabel>
+        <relationshipName>Contact_SMS_Histories</relationshipName>
+    </fields>
+    <!-- Lead lookup -->
+    <fields>
+        <fullName>Lead__c</fullName>
+        <label>Lead</label>
+        <type>Lookup</type>
+        <referenceTo>Lead</referenceTo>
+        <relationshipLabel>Lead</relationshipLabel>
+        <relationshipName>Lead_SMS_Histories</relationshipName>
+    </fields>
+    <fields>
+        <fullName>Campaign__c</fullName>
+        <label>Campaign</label>
+        <type>Lookup</type>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Campaign</relationshipLabel>
+        <relationshipName>Campaign_SMS_Histories</relationshipName>
+    </fields>
+
+    <!-- Core fields -->
+    <!-- Long-text example: Message_Text__c -->
+    <fields>
+        <fullName>Message_Text__c</fullName>
+        <label>Message Text</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Template_Used__c</fullName>
+        <label>Template Used</label>
+        <type>Text</type>
+        <length>255</length>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <label>Status</label>
+        <type>Picklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Queued</fullName>
+                    <default>false</default>
+                    <label>Queued</label>
+                </value>
+                <value>
+                    <fullName>Sent</fullName>
+                    <default>false</default>
+                    <label>Sent</label>
+                </value>
+                <value>
+                    <fullName>Failed</fullName>
+                    <default>false</default>
+                    <label>Failed</label>
+                </value>
+                <value>
+                    <fullName>Retried</fullName>
+                    <default>false</default>
+                    <label>Retried</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>Response__c</fullName>
+        <label>Response</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Error__c</fullName>
+        <label>Error</label>
+        <type>LongTextArea</type>
+        <length>32768</length>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Sent_Timestamp__c</fullName>
+        <label>Sent Timestamp</label>
+        <type>DateTime</type>
+    </fields>
+</CustomObject>
