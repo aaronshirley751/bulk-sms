@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TODAY</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Start_Term_and_Year__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>CONTACT.LEAD_SOURCE</columns>
+    <columns>Source_Code__c</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>Time_Zone_Name__c</columns>
+    <columns>MailingZipCode__c</columns>
+    <columns>Communication_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.EnrollmentrxRx__Erx_Contact</value>
+    </filters>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Admitted</value>
+    </filters>
+    <label>TODAY</label>
+</ListView>

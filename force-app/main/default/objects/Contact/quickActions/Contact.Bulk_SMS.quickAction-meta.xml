@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
+  <!-- API name is Object.DeveloperName -->
+  <fullName>Contact.Bulk_SMS</fullName>
+  <label>Bulk SMS</label>
+  <!-- LightningComponent invokes your LWC -->
+  <type>LightningComponent</type>
+  <lightningComponentBundle>c_listViewBulkSms</lightningComponentBundle>
+</QuickAction>

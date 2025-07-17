@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hubspot_Contacts_Country_List</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Start_Term_and_Year__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Campus__c</columns>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>CONTACT.LEAD_SOURCE</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>Sync_Contact_to_CX__c</columns>
+    <columns>CONTACT.ADDRESS2_COUNTRY</columns>
+    <columns>hed__Mailing_County__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATEDBY_USER.ALIAS</field>
+        <operation>contains</operation>
+        <value>bhubs,srhod,shubs</value>
+    </filters>
+    <filters>
+        <field>CONTACT.ADDRESS2_COUNTRY</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.EnrollmentrxRx__Erx_Contact</value>
+    </filters>
+    <label>Hubspot Contacts Country List</label>
+</ListView>

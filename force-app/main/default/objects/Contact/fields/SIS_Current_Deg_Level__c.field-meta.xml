@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SIS_Current_Deg_Level__c</fullName>
+    <externalId>false</externalId>
+    <label>SIS Current  Deg Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Associate</fullName>
+                <default>false</default>
+                <label>Associate</label>
+            </value>
+            <value>
+                <fullName>Bachelor</fullName>
+                <default>false</default>
+                <label>Bachelor</label>
+            </value>
+            <value>
+                <fullName>Doctorate</fullName>
+                <default>false</default>
+                <label>Doctorate</label>
+            </value>
+            <value>
+                <fullName>Master</fullName>
+                <default>false</default>
+                <label>Master</label>
+            </value>
+            <value>
+                <fullName>Non Degree</fullName>
+                <default>false</default>
+                <label>Non Degree</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

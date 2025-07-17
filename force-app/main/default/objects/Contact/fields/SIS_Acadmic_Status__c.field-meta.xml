@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SIS_Acadmic_Status__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>The Student&apos;s current Academic Status. 
+Current = Currently take classes. 
+StopOut = has not taken a class in 1 - 3 semesters. 
+ReEntry = has not taken a class in 4 or more semester. 
+StFrancis = St Francis Student.</inlineHelpText>
+    <label>SIS Academic Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Current</fullName>
+                <default>false</default>
+                <label>Current</label>
+            </value>
+            <value>
+                <fullName>ReEntry</fullName>
+                <default>false</default>
+                <label>ReEntry</label>
+            </value>
+            <value>
+                <fullName>StopOut</fullName>
+                <default>false</default>
+                <label>StopOut</label>
+            </value>
+            <value>
+                <fullName>StFrancis</fullName>
+                <default>false</default>
+                <label>StFrancis</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,32 @@
+{
+  "status": 1,
+  "result": [
+    {
+      "columnNumber": "65",
+      "lineNumber": "16",
+      "error": "Method does not exist or incorrect signature: void subList(Integer, Integer) from the type List<GenesysSMSInvoker.SMSRequest> (16:65)",
+      "fullName": "BulkSMSService",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\BulkSMSService.cls",
+      "problemType": "Error"
+    }
+  ],
+  "name": "DeployFailed",
+  "message": "Deploy failed.",
+  "exitCode": 1,
+  "actions": [],
+  "commandName": "SourceDeployCommand",
+  "data": [
+    {
+      "columnNumber": "65",
+      "lineNumber": "16",
+      "error": "Method does not exist or incorrect signature: void subList(Integer, Integer) from the type List<GenesysSMSInvoker.SMSRequest> (16:65)",
+      "fullName": "BulkSMSService",
+      "type": "ApexClass",
+      "filePath": "force-app\\main\\default\\classes\\BulkSMSService.cls",
+      "problemType": "Error"
+    }
+  ],
+  "stack": "DeployFailed: Deploy failed.\n    at C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\salesforce-alm\\dist\\lib\\source\\sourceApiCommand.js:71:31\n    at async SourceDeployCommand.execLegacyCommand (C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\salesforce-alm\\dist\\ToolbeltCommand.js:149:29)\n    at async SourceDeployCommand.run (C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\salesforce-alm\\dist\\commands\\force\\source\\deploy.js:32:16)\n    at async SourceDeployCommand._run (C:\\Users\\tasms\\AppData\\Local\\sf\\node_modules\\@salesforce\\command\\lib\\sfdxCommand.js:81:40)\n    at async Config.runCommand (C:\\Users\\tasms\\AppData\\Local\\nvm\\v18.20.8\\node_modules\\@salesforce\\cli\\node_modules\\@oclif\\core\\lib\\config\\config.js:456:25)\n    at async run (C:\\Users\\tasms\\AppData\\Local\\nvm\\v18.20.8\\node_modules\\@salesforce\\cli\\node_modules\\@oclif\\core\\lib\\main.js:96:16)\n    at async file:///C:/Users/tasms/AppData/Local/nvm/v18.20.8/node_modules/@salesforce/cli/bin/run.js:15:1",
+  "warnings": []
+}

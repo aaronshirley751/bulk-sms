@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integration_Flag_Match_Results__c</fullName>
+    <description>Integration flag detailing match results where match/create was not possible.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Integration flag detailing match results where match/create was not possible.</inlineHelpText>
+    <label>Match Results (Integration Flag)</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

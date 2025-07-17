@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Degree_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Degree Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Certificate</fullName>
+                <default>false</default>
+                <label>Certificate</label>
+            </value>
+            <value>
+                <fullName>Associate&apos;s Degree</fullName>
+                <default>false</default>
+                <label>Associate&apos;s Degree</label>
+            </value>
+            <value>
+                <fullName>Bachelor&apos;s Degree</fullName>
+                <default>false</default>
+                <label>Bachelor&apos;s Degree</label>
+            </value>
+            <value>
+                <fullName>Master&apos;s Certificate</fullName>
+                <default>false</default>
+                <label>Master&apos;s Certificate</label>
+            </value>
+            <value>
+                <fullName>Master&apos;s Degree</fullName>
+                <default>false</default>
+                <label>Master&apos;s Degree</label>
+            </value>
+            <value>
+                <fullName>MBA</fullName>
+                <default>false</default>
+                <label>MBA</label>
+            </value>
+            <value>
+                <fullName>Doctoral Degree</fullName>
+                <default>false</default>
+                <label>Doctoral Degree</label>
+            </value>
+            <value>
+                <fullName>Auto/Diesel Institute Programs</fullName>
+                <default>false</default>
+                <label>Auto/Diesel Institute Programs</label>
+            </value>
+            <value>
+                <fullName>Culinary Institute Programs</fullName>
+                <default>false</default>
+                <label>Culinary Institute Programs</label>
+            </value>
+            <value>
+                <fullName>Associate of Applied Science</fullName>
+                <default>false</default>
+                <label>Associate of Applied Science</label>
+            </value>
+            <value>
+                <fullName>Bachelor of Business Administration</fullName>
+                <default>false</default>
+                <label>Bachelor of Business Administration</label>
+            </value>
+            <value>
+                <fullName>Bachelor of General Studies</fullName>
+                <default>false</default>
+                <label>Bachelor of General Studies</label>
+            </value>
+            <value>
+                <fullName>Bachelor of Science</fullName>
+                <default>false</default>
+                <label>Bachelor of Science</label>
+            </value>
+            <value>
+                <fullName>Doctorate of Business Administration</fullName>
+                <default>false</default>
+                <label>Doctorate of Business Administration</label>
+            </value>
+            <value>
+                <fullName>Graduate Certificate</fullName>
+                <default>false</default>
+                <label>Graduate Certificate</label>
+            </value>
+            <value>
+                <fullName>Juris Doctor</fullName>
+                <default>false</default>
+                <label>Juris Doctor</label>
+            </value>
+            <value>
+                <fullName>Master of Business Administration</fullName>
+                <default>false</default>
+                <label>Master of Business Administration</label>
+            </value>
+            <value>
+                <fullName>Master of Science</fullName>
+                <default>false</default>
+                <label>Master of Science</label>
+            </value>
+            <value>
+                <fullName>Master of Science Nursing</fullName>
+                <default>false</default>
+                <label>Master of Science Nursing</label>
+            </value>
+            <value>
+                <fullName>Post-Baccalaureate Certificate</fullName>
+                <default>false</default>
+                <label>Post-Baccalaureate Certificate</label>
+            </value>
+            <value>
+                <fullName>Non Degree</fullName>
+                <default>false</default>
+                <label>Non Degree</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

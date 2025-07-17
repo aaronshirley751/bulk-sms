@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllContacts</fullName>
+    <booleanFilter>1 AND 2 and 3 and 4</booleanFilter>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CONTACT.LEAD_SOURCE</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>ERx_Forms__Create_Portal_User__c</columns>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Campus__c</field>
+        <operation>equals</operation>
+        <value>Jackson</value>
+    </filters>
+    <filters>
+        <field>Registration_status__c</field>
+        <operation>notEqual</operation>
+        <value>R</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Semester__c</field>
+        <operation>contains</operation>
+        <value>Fall 2024,Spring 2025</value>
+    </filters>
+    <filters>
+        <field>CONTACT.LAST_UPDATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>5/23/2024 12:00 AM</value>
+    </filters>
+    <label>All Contacts</label>
+</ListView>

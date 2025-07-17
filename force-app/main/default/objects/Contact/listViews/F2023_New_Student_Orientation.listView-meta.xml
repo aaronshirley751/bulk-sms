@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>F2023_New_Student_Orientation</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+    <columns>Application_Campus__c</columns>
+    <columns>Active_Application_Semester__c</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>Active_Application_Application_Type__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Active_Application_Student_Type__c</columns>
+    <columns>Student_Type__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Time_Zone_Name__c</columns>
+    <columns>Time_Zone_Zip_Code__c</columns>
+    <columns>Date_App_Submitted__c</columns>
+    <columns>Application_Major__c</columns>
+    <columns>Phone_E_164__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>equals</operation>
+        <value>Inquiry</value>
+    </filters>
+    <filters>
+        <field>Communication_Type__c</field>
+        <operation>notEqual</operation>
+        <value>St. Francis</value>
+    </filters>
+    <filters>
+        <field>Student_Type__c</field>
+        <operation>notEqual</operation>
+        <value>RE,HS,GST</value>
+    </filters>
+    <filters>
+        <field>Time_Zone_Zip_Code__c</field>
+        <operation>equals</operation>
+        <value>49461,49463,49457,49445,49442,49440,49443,49441,49444,49415,49456,49409,49448,49417,49404,49401,49430,49435,49534,49544,49321,49306,49345,49599,49525,49505,49501,49504,49503,49507,49506,49546,49301,49357,49528,49508,49548,49509,49519</value>
+    </filters>
+    <filters>
+        <field>Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>2023-08-01</value>
+    </filters>
+    <label>F2023 New Student Orientation</label>
+</ListView>

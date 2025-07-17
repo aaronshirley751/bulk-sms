@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Robin_s_Block_List</fullName>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.LEAD_SOURCE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>CONTACT.LAST_UPDATE</columns>
+    <columns>Date_App_Submitted__c</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Communication_Type__c</columns>
+    <columns>Migrated_Record__c</columns>
+    <columns>Login_Portal_Control__c</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Time_Zone_Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>equals</operation>
+        <value>Complete App</value>
+    </filters>
+    <filters>
+        <field>Student_Type__c</field>
+        <operation>notEqual</operation>
+        <value>HS</value>
+    </filters>
+    <filters>
+        <field>Application_Type__c</field>
+        <operation>notEqual</operation>
+        <value>JD</value>
+    </filters>
+    <filters>
+        <field>Communication_Type__c</field>
+        <operation>notEqual</operation>
+        <value>St. Francis</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Semester__c</field>
+        <operation>contains</operation>
+        <value>Spring 2024</value>
+    </filters>
+    <label>Robin&apos;s Block List</label>
+</ListView>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Military_Active_Vet__c</fullName>
+    <externalId>false</externalId>
+    <label>Military Active/Vet</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>AD</fullName>
+                <default>false</default>
+                <label>Active Duty</label>
+            </value>
+            <value>
+                <fullName>VT</fullName>
+                <default>false</default>
+                <label>Veteran</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

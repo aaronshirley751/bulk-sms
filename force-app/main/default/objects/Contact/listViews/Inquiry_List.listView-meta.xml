@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inquiry_List</fullName>
+    <columns>CONTACT.LAST_NAME</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>CONTACT.LEAD_SOURCE</columns>
+    <columns>Date__c</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>Campus__c</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>Communication_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.LEAD_SOURCE</field>
+        <operation>notEqual</operation>
+        <value>Advisor,Consortium,Events,Lead Card,Outreach Team,Purchased Prospects,Walk-In</value>
+    </filters>
+    <filters>
+        <field>Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>2024-03-15</value>
+    </filters>
+    <filters>
+        <field>Campus__c</field>
+        <operation>notContain</operation>
+        <value>HS Dual Enrollment,St. Francis</value>
+    </filters>
+    <filters>
+        <field>Communication_Type__c</field>
+        <operation>notEqual</operation>
+        <value>St. Francis,Running Start,School Counselor,LEA</value>
+    </filters>
+    <filters>
+        <field>Campus__c</field>
+        <operation>notContain</operation>
+        <value>Auburn Hills,Auto/Diesel Institute of Michigan,Cadillac,Jackson,Muskegon,Owosso,HS Dual Enrollment,St. Francis,Port Huron,Culinary Institute of Michigan - Muskegon,Culinary Institute of Michigan - Port Huron,Royal Oak</value>
+    </filters>
+    <filters>
+        <field>Start_Term_and_Year__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Inquiry List</label>
+</ListView>

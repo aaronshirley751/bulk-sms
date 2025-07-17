@@ -1,0 +1,25 @@
+{
+  "status": 0,
+  "result": {
+    "deployedSource": [
+      {
+        "state": "Add",
+        "fullName": "listViewBulkSms\\listViewBulkSms.html",
+        "type": "LightningComponentBundle",
+        "filePath": "force-app\\main\\default\\lwc\\listViewBulkSms\\listViewBulkSms.html"
+      },
+      {
+        "state": "Add",
+        "fullName": "listViewBulkSms\\listViewBulkSms.js",
+        "type": "LightningComponentBundle",
+        "filePath": "force-app\\main\\default\\lwc\\listViewBulkSms\\listViewBulkSms.js"
+      },
+      {
+        "state": "Add",
+        "fullName": "listViewBulkSms\\listViewBulkSms.js",
+        "type": "LightningComponentBundle",
+        "filePath": "force-app\\main\\default\\lwc\\listViewBulkSms\\listViewBulkSms.js-meta.xml"
+      }
+    ]
+  }
+}

@@ -3,8 +3,8 @@ public class BulkSMSControllerTest {
     @isTest
     static void testSendBulkSMS() {
         // Insert two Contacts
-        Contact c1 = new Contact(LastName='Smith', MobilePhone='+1234567890', HasOptedOutOfSMS=false);
-        Contact c2 = new Contact(LastName='Jones', MobilePhone='+0987654321', HasOptedOutOfSMS=true);
+        Contact c1 = new Contact(LastName='Smith', MobilePhone='+1234567890', hed__SMS_Opt_Out__c=false);
+        Contact c2 = new Contact(LastName='Jones', MobilePhone='+0987654321', hed__SMS_Opt_Out__c=true);
         insert new List<Contact>{c1, c2};
 
         // Call sendBulkSMS

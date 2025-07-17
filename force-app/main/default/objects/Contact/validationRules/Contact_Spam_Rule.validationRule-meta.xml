@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Spam_Rule</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR (CONTAINS(FirstName, &quot;0&quot;),
+CONTAINS(FirstName, &quot;1&quot;),
+CONTAINS(FirstName, &quot;2&quot;),
+CONTAINS(FirstName, &quot;3&quot;),
+CONTAINS(FirstName, &quot;4&quot;),
+CONTAINS(FirstName, &quot;5&quot;),
+CONTAINS(FirstName, &quot;6&quot;),
+CONTAINS(FirstName, &quot;7&quot;),   
+CONTAINS(FirstName, &quot;8&quot;),
+CONTAINS(FirstName, &quot;9&quot;),
+CONTAINS(FirstName, &quot;①&quot;),
+CONTAINS(FirstName, &quot;②&quot;),
+CONTAINS(FirstName, &quot;③&quot;),
+CONTAINS(FirstName, &quot;④&quot;),
+CONTAINS(FirstName, &quot;⑤&quot;),
+CONTAINS(FirstName, &quot;⑥&quot;),
+CONTAINS(FirstName, &quot;⑦&quot;),
+CONTAINS(FirstName, &quot;⑧&quot;),
+CONTAINS(FirstName, &quot;⑨&quot;),
+CONTAINS(FirstName, &quot;娱&quot;),
+CONTAINS(FirstName, &quot;乐&quot;),
+CONTAINS(FirstName, &quot;送&quot;),
+CONTAINS(FirstName, &quot;存&quot;),
+CONTAINS(FirstName, &quot;水&quot;))</errorConditionFormula>
+    <errorMessage>Invalid characters used for name</errorMessage>
+</ValidationRule>
