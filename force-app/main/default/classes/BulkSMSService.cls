@@ -10,14 +10,23 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts {
     /** Called asynchronously by the queue */
     public void execute(QueueableContext context) {
         Integer chunkSize = 50;
-        for (Integer i = 0; i < requests.size(); i += chunkSize) {
-            // *** Must assign the subList result to a variable ***
-            List<GenesysSMSInvoker.SMSRequest> chunk =
-                requests.subList(
-                    i,
-                    Math.min(requests.size(), i + chunkSize)
-                );
+        if (requests.size() <= chunkSize) {
+            // If within one chunk, send directly
+            GenesysSMSInvoker.sendSMS(requests);
+        } else {
+            // Send the first chunk of 50
+            List<GenesysSMSInvoker.SMSRequest> chunk = new List<GenesysSMSInvoker.SMSRequest>();
+            for (Integer j = 0; j < chunkSize; j++) {
+                chunk.add(requests[j]);
+            }
             GenesysSMSInvoker.sendSMS(chunk);
+            // Prepare remaining requests
+            List<GenesysSMSInvoker.SMSRequest> remaining = new List<GenesysSMSInvoker.SMSRequest>();
+            for (Integer k = chunkSize; k < requests.size(); k++) {
+                remaining.add(requests[k]);
+            }
+            // Chain the next queueable for the remaining messages
+            System.enqueueJob(new BulkSMSService(remaining));
         }
     }
 }

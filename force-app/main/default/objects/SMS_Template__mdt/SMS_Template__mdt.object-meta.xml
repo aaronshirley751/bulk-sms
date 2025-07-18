@@ -3,21 +3,4 @@
     <label>SMS Template</label>
     <pluralLabel>SMS Templates</pluralLabel>
     <visibility>Public</visibility>
-
-    <!-- Body field -->
-    <fields>
-        <fullName>Body__c</fullName>
-        <label>Body</label>
-        <type>LongTextArea</type>
-        <length>1000</length>
-        <visibleLines>3</visibleLines>
-    </fields>
-
-    <!-- Is Active field -->
-    <fields>
-        <fullName>IsActive__c</fullName>
-        <label>Is Active</label>
-        <type>Checkbox</type>
-        <defaultValue>false</defaultValue>
-    </fields>
 </CustomObject>
