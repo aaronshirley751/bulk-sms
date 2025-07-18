@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bulk_SMS_Button</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>javascript</linkType>
+    <masterLabel>Bulk SMS</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url><![CDATA[
+{!REQUIRESCRIPT('/soap/ajax/58.0/connection.js')}
+{!REQUIRESCRIPT('/soap/ajax/58.0/apex.js')}
+
+var selectedRecords = {!GETRECORDIDS($ObjectType.Contact)};
+if (selectedRecords.length == 0) {
+    alert('Please select at least one contact.');
+} else {
+    var message = prompt('Enter SMS message:');
+    if (message != null && message != '') {
+        try {
+            var result = sforce.apex.execute('BulkSMSController', 'sendBulkSMS', {
+                recordIds: selectedRecords,
+                messageText: message,
+                fromAddress: ''
+            });
+            alert('SMS queued successfully: ' + result);
+            location.reload();
+        } catch (e) {
+            alert('Error sending SMS: ' + e.message);
+        }
+    }
+}
+    ]]></url>
+</WebLink>

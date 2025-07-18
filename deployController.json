@@ -1,0 +1,25 @@
+{
+  "status": 0,
+  "result": {
+    "deployedSource": [
+      {
+        "state": "Add",
+        "fullName": "BulkSMSController",
+        "type": "ApexClass",
+        "filePath": "force-app\\main\\default\\classes\\BulkSMSController.cls"
+      },
+      {
+        "state": "Add",
+        "fullName": "BulkSMSController",
+        "type": "ApexClass",
+        "filePath": "force-app\\main\\default\\classes\\BulkSMSController.cls-meta.xml"
+      },
+      {
+        "state": "Add",
+        "fullName": "BulkSMSController",
+        "type": "ApexClass",
+        "filePath": "force-app\\main\\default\\classes\\BulkSMSController.cls"
+      }
+    ]
+  }
+}

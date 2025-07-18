@@ -1,0 +1,37 @@
+{
+  "status": 0,
+  "result": {
+    "deployedSource": [
+      {
+        "state": "Add",
+        "fullName": "SMS_Template__mdt",
+        "type": "CustomObject",
+        "filePath": "force-app\\main\\default\\objects\\SMS_Template__mdt\\SMS_Template__mdt.object-meta.xml"
+      },
+      {
+        "state": "Add",
+        "fullName": "SMS_Template__mdt.Body__c",
+        "type": "CustomField",
+        "filePath": "force-app\\main\\default\\objects\\SMS_Template__mdt\\fields\\Body__c.field-meta.xml"
+      },
+      {
+        "state": "Add",
+        "fullName": "SMS_Template__mdt.IsActive__c",
+        "type": "CustomField",
+        "filePath": "force-app\\main\\default\\objects\\SMS_Template__mdt\\fields\\IsActive__c.field-meta.xml"
+      },
+      {
+        "state": "Add",
+        "fullName": "SMS_Template__mdt.Body__c",
+        "type": "CustomField",
+        "filePath": "force-app\\main\\default\\objects\\SMS_Template__mdt\\fields\\Body__c.field-meta.xml"
+      },
+      {
+        "state": "Add",
+        "fullName": "SMS_Template__mdt.IsActive__c",
+        "type": "CustomField",
+        "filePath": "force-app\\main\\default\\objects\\SMS_Template__mdt\\fields\\IsActive__c.field-meta.xml"
+      }
+    ]
+  }
+}

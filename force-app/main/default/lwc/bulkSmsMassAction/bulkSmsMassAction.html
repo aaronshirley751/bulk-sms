@@ -1,0 +1,14 @@
+<template>
+    <lightning-quick-action-panel header="Bulk SMS">
+        <div class="slds-m-around_medium">
+            <template if:true={recordIds}>
+                <p>Selected {recordIds.length} contacts for bulk SMS.</p>
+                <!-- Add your SMS UI components here -->
+            </template>
+        </div>
+        <div slot="footer">
+            <lightning-button variant="neutral" label="Cancel" onclick={handleCancel}></lightning-button>
+            <lightning-button variant="brand" label="Send SMS" class="slds-m-left_x-small" onclick={handleSend}></lightning-button>
+        </div>
+    </lightning-quick-action-panel>
+</template>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <description>Bulk SMS Flow for sending SMS to multiple contacts from list view</description>
+    <label>Bulk SMS Flow</label>
+    <processType>Flow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Bulk_SMS_Screen</targetReference>
+        </connector>
+    </start>
+    <screens>
+        <name>Bulk_SMS_Screen</name>
+        <label>Bulk SMS</label>
+        <locationX>50</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Send_Bulk_SMS</targetReference>
+        </connector>
+        <fields>
+            <name>Selected_Contacts_Display</name>
+            <fieldText>Sending SMS to selected contacts</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <fields>
+            <name>SMS_Message</name>
+            <dataType>String</dataType>
+            <fieldText>SMS Message</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <actionCalls>
+        <name>Send_Bulk_SMS</name>
+        <label>Send Bulk SMS</label>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <actionName>BulkSMSController</actionName>
+        <actionType>apex</actionType>
+        <inputParameters>
+            <name>contactIds</name>
+            <value>
+                <elementReference>ids</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>SMS_Message</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <variables>
+        <name>ids</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>
