@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFL_Contact_Center_View</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+    <columns>Active_Application_Application_Type__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Date__c</columns>
+    <columns>Date_App_Submitted__c</columns>
+    <columns>Student_Type__c</columns>
+    <columns>Application_Type__c</columns>
+    <columns>Communication_Type__c</columns>
+    <columns>Migrated_Record__c</columns>
+    <columns>Login_Portal_Control__c</columns>
+    <columns>Time_Zone_Name__c</columns>
+    <columns>Campus__c</columns>
+    <columns>Active_Application_Owner__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Student_Type__c</field>
+        <operation>notEqual</operation>
+        <value>HS</value>
+    </filters>
+    <filters>
+        <field>Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>2024-03-01</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Student_Type__c</field>
+        <operation>notEqual</operation>
+        <value>HS</value>
+    </filters>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>contains</operation>
+        <value>Engaged Inquiry,Inquiry,Closed Inquiry</value>
+    </filters>
+    <filters>
+        <field>Campus__c</field>
+        <operation>equals</operation>
+        <value>St. Francis</value>
+    </filters>
+    <label>SFL Contact Center View</label>
+</ListView>

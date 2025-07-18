@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campus__c</fullName>
+    <externalId>false</externalId>
+    <label>Campus</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Auburn Hills</fullName>
+                <default>false</default>
+                <label>Auburn Hills</label>
+            </value>
+            <value>
+                <fullName>Auto/Diesel Institute of Michigan</fullName>
+                <default>false</default>
+                <label>Auto/Diesel Institute of Michigan</label>
+            </value>
+            <value>
+                <fullName>Cadillac</fullName>
+                <default>false</default>
+                <label>Cadillac</label>
+            </value>
+            <value>
+                <fullName>Center for Grad Studies</fullName>
+                <default>false</default>
+                <label>Center for Grad Studies</label>
+            </value>
+            <value>
+                <fullName>Jackson</fullName>
+                <default>false</default>
+                <label>Jackson</label>
+            </value>
+            <value>
+                <fullName>Muskegon</fullName>
+                <default>false</default>
+                <label>Muskegon</label>
+            </value>
+            <value>
+                <fullName>Owosso</fullName>
+                <default>false</default>
+                <label>Owosso</label>
+            </value>
+            <value>
+                <fullName>Online</fullName>
+                <default>false</default>
+                <label>Online</label>
+            </value>
+            <value>
+                <fullName>HS Dual Enrollment</fullName>
+                <default>false</default>
+                <label>HS Dual Enrollment</label>
+            </value>
+            <value>
+                <fullName>St. Francis</fullName>
+                <default>false</default>
+                <label>St. Francis</label>
+            </value>
+            <value>
+                <fullName>Port Huron</fullName>
+                <default>false</default>
+                <label>Port Huron</label>
+            </value>
+            <value>
+                <fullName>Center for Graduate Studies</fullName>
+                <default>false</default>
+                <label>Center for Graduate Studies</label>
+            </value>
+            <value>
+                <fullName>Culinary Institute of Michigan - Muskegon</fullName>
+                <default>false</default>
+                <label>Culinary Institute of Michigan - Muskegon</label>
+            </value>
+            <value>
+                <fullName>Culinary Institute of Michigan - Port Huron</fullName>
+                <default>false</default>
+                <label>Culinary Institute of Michigan - Port Huron</label>
+            </value>
+            <value>
+                <fullName>Royal Oak</fullName>
+                <default>false</default>
+                <label>Royal Oak</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

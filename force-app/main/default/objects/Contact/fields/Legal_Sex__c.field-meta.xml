@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Sex__c</fullName>
+    <description>this is legal sex</description>
+    <externalId>false</externalId>
+    <label>Legal Sex</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>-2</fullName>
+                <default>false</default>
+                <label>Male</label>
+            </value>
+            <value>
+                <fullName>-1</fullName>
+                <default>false</default>
+                <label>Female</label>
+            </value>
+            <value>
+                <fullName>-4</fullName>
+                <default>false</default>
+                <label>Transgender Male</label>
+            </value>
+            <value>
+                <fullName>-3</fullName>
+                <default>false</default>
+                <label>Transgender Female</label>
+            </value>
+            <value>
+                <fullName>-5</fullName>
+                <default>false</default>
+                <label>Non-binary</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

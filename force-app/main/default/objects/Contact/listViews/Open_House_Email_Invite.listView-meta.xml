@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_House_Email_Invite</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+    <columns>Active_Application_Owner__c</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>Active_Application_Semester__c</columns>
+    <columns>Active_Application_Student_Type__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Registration_status__c</columns>
+    <columns>Campus__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>equals</operation>
+        <value>Inquiry,Started App,Submitted App</value>
+    </filters>
+    <filters>
+        <field>Registration_status__c</field>
+        <operation>notEqual</operation>
+        <value>R</value>
+    </filters>
+    <filters>
+        <field>Campus__c</field>
+        <operation>equals</operation>
+        <value>Royal Oak</value>
+    </filters>
+    <filters>
+        <field>Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>2023-10-01</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Student_Type__c</field>
+        <operation>notEqual</operation>
+        <value>GST</value>
+    </filters>
+    <label>Open House Email Invite</label>
+</ListView>

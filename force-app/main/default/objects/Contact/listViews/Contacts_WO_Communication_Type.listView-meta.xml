@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contacts_WO_Communication_Type</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>Communication_Type__c</columns>
+    <columns>Student_Type__c</columns>
+    <columns>Active_Application_Student_Type__c</columns>
+    <columns>CONTACT.BIRTHDATE</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>CONTACT.LAST_UPDATE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>Campus__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Communication_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Traditional Freshman,Adult Freshman,Transfer,Graduate,St. Francis</value>
+    </filters>
+    <filters>
+        <field>CONTACT.CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>10/20/2022 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.EnrollmentrxRx__Erx_Contact</value>
+    </filters>
+    <label>Contacts WO Communication Type</label>
+</ListView>

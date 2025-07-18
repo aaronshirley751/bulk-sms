@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mass_Email_for_Joe_s_Students_F23_Starts</fullName>
+    <columns>Active_Application_Owner__c</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>Active_Application_Student_Type__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Registration_status__c</columns>
+    <columns>Campus__c</columns>
+    <columns>Start_Term_and_Year__c</columns>
+    <columns>Application_Major__c</columns>
+    <columns>Active_Application_Application_Type__c</columns>
+    <columns>Active_Application_Semester__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>equals</operation>
+        <value>Confirmed</value>
+    </filters>
+    <filters>
+        <field>Registration_status__c</field>
+        <operation>equals</operation>
+        <value>N</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Semester__c</field>
+        <operation>contains</operation>
+        <value>Fall 2024</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Student_Type__c</field>
+        <operation>notEqual</operation>
+        <value>GST</value>
+    </filters>
+    <label>Mass Email for Joe&apos;s Students F23 Starts</label>
+</ListView>

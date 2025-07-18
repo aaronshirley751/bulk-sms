@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>St_Francis_Inquiry_Flow</fullName>
+    <booleanFilter>(1 OR 2 OR 3) and 4</booleanFilter>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>CONTACT.LEAD_SOURCE</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>ACCOUNT.NAME</columns>
+    <columns>Date_App_Submitted__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Time_Zone_Zip_Code__c</columns>
+    <columns>Time_Zone_Name__c</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>Communication_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Campus__c</field>
+        <operation>equals</operation>
+        <value>St. Francis</value>
+    </filters>
+    <filters>
+        <field>Communication_Type__c</field>
+        <operation>equals</operation>
+        <value>St. Francis</value>
+    </filters>
+    <filters>
+        <field>Degree_Type__c</field>
+        <operation>equals</operation>
+        <value>Juris Doctor</value>
+    </filters>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.EnrollmentrxRx__Erx_Contact</value>
+    </filters>
+    <label>St. Francis Inquiry Flow</label>
+</ListView>

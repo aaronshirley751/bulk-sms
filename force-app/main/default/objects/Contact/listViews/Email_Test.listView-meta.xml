@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Test</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>Application_Major__c</columns>
+    <columns>hed__UniversityEmail__c</columns>
+    <columns>Integration_Status__c</columns>
+    <columns>Active_Application_Semester__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Date_Admitted__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>equals</operation>
+        <value>Admitted,College Prep Required</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Semester__c</field>
+        <operation>contains</operation>
+        <value>2024,2025</value>
+    </filters>
+    <filters>
+        <field>CONTACT.FIRST_NAME</field>
+        <operation>notContain</operation>
+        <value>test</value>
+    </filters>
+    <filters>
+        <field>hed__UniversityEmail__c</field>
+        <operation>notContain</operation>
+        <value>@baker.edu</value>
+    </filters>
+    <filters>
+        <field>Do_Not_Sync_to_CX__c</field>
+        <operation>notEqual</operation>
+        <value>1</value>
+    </filters>
+    <label>Email Test</label>
+    <sharedTo>
+        <group>Baker_Call_Center</group>
+    </sharedTo>
+</ListView>

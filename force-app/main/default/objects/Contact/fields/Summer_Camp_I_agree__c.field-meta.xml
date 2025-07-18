@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Summer_Camp_I_agree__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>By checking  the &quot;I agree&quot; I hereby give permission for my child to participate in all camp activities. In case of emergency, I authorize camp staff to seek medical treatment for my child.</description>
+    <externalId>false</externalId>
+    <label>Summer Camp I agree</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

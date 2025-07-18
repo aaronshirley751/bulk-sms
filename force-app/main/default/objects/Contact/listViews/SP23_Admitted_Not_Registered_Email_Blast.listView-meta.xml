@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SP23_Admitted_Not_Registered_Email_Blast</fullName>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>Active_Application_Owner__c</columns>
+    <columns>Active_Application_Student_Type__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Registration_status__c</columns>
+    <columns>Active_Application_Semester__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Active_Application_Semester__c</field>
+        <operation>equals</operation>
+        <value>Spring 2023</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Student_Type__c</field>
+        <operation>equals</operation>
+        <value>NEW,RE,TRN</value>
+    </filters>
+    <filters>
+        <field>EnrollmentrxRx__Admissions_Status__c</field>
+        <operation>equals</operation>
+        <value>Admitted,Complete App</value>
+    </filters>
+    <filters>
+        <field>Registration_status__c</field>
+        <operation>notEqual</operation>
+        <value>R,D,W</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Application_Type__c</field>
+        <operation>notEqual</operation>
+        <value>JD</value>
+    </filters>
+    <filters>
+        <field>Active_Application_Owner__c</field>
+        <operation>notEqual</operation>
+        <value>me</value>
+    </filters>
+    <label>SP23 Complete App &amp; Admit NR Email Blast</label>
+</ListView>

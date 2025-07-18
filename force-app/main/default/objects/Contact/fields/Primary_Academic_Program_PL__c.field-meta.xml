@@ -1,0 +1,1120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Academic_Program_PL__c</fullName>
+    <externalId>false</externalId>
+    <label>Primary Academic Program PL</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Accelerated Nursing BSN</fullName>
+                <default>false</default>
+                <label>Accelerated Nursing BSN</label>
+            </value>
+            <value>
+                <fullName>Accounting</fullName>
+                <default>false</default>
+                <label>Accounting</label>
+            </value>
+            <value>
+                <fullName>Accounting (4+1)</fullName>
+                <default>false</default>
+                <label>Accounting (4+1)</label>
+            </value>
+            <value>
+                <fullName>Accounting (4+1) (BBA)</fullName>
+                <default>false</default>
+                <label>Accounting (4+1) (BBA)</label>
+            </value>
+            <value>
+                <fullName>Accounting (BBA/MBA)</fullName>
+                <default>false</default>
+                <label>Accounting (BBA/MBA)</label>
+            </value>
+            <value>
+                <fullName>Accounting (BBA)</fullName>
+                <default>false</default>
+                <label>Accounting (BBA)</label>
+            </value>
+            <value>
+                <fullName>Accounting (MBA)</fullName>
+                <default>false</default>
+                <label>Accounting (MBA)</label>
+            </value>
+            <value>
+                <fullName>Accounting - MBA</fullName>
+                <default>false</default>
+                <label>Accounting - MBA</label>
+            </value>
+            <value>
+                <fullName>Automation Engineering Technology</fullName>
+                <default>false</default>
+                <label>Automation Engineering Technology</label>
+            </value>
+            <value>
+                <fullName>Automation Engineering Technology (BS)</fullName>
+                <default>false</default>
+                <label>Automation Engineering Technology (BS)</label>
+            </value>
+            <value>
+                <fullName>Automotive Services Technology</fullName>
+                <default>false</default>
+                <label>Automotive Services Technology</label>
+            </value>
+            <value>
+                <fullName>Automotive Services Technology (AAS)</fullName>
+                <default>false</default>
+                <label>Automotive Services Technology (AAS)</label>
+            </value>
+            <value>
+                <fullName>Automotive Services Technology (Certificate)</fullName>
+                <default>false</default>
+                <label>Automotive Services Technology (Certificate)</label>
+            </value>
+            <value>
+                <fullName>Automotive Services Technology-Certificate</fullName>
+                <default>false</default>
+                <label>Automotive Services Technology-Certificate</label>
+            </value>
+            <value>
+                <fullName>Baking and Pastry</fullName>
+                <default>false</default>
+                <label>Baking and Pastry</label>
+            </value>
+            <value>
+                <fullName>Baking and Pastry (AAS)</fullName>
+                <default>false</default>
+                <label>Baking and Pastry (AAS)</label>
+            </value>
+            <value>
+                <fullName>Biology (BS)</fullName>
+                <default>false</default>
+                <label>Biology (BS)</label>
+            </value>
+            <value>
+                <fullName>Business</fullName>
+                <default>false</default>
+                <label>Business</label>
+            </value>
+            <value>
+                <fullName>Business (BS)</fullName>
+                <default>false</default>
+                <label>Business (BS)</label>
+            </value>
+            <value>
+                <fullName>Business Administration (BBS) - Accelerated</fullName>
+                <default>false</default>
+                <label>Business Administration (BBS) - Accelerated</label>
+            </value>
+            <value>
+                <fullName>Business Administration (DBA)</fullName>
+                <default>false</default>
+                <label>Business Administration (DBA)</label>
+            </value>
+            <value>
+                <fullName>Business Administration (DBA-ABD)</fullName>
+                <default>false</default>
+                <label>Business Administration (DBA-ABD)</label>
+            </value>
+            <value>
+                <fullName>Business Administration (MBA)</fullName>
+                <default>false</default>
+                <label>Business Administration (MBA)</label>
+            </value>
+            <value>
+                <fullName>Business Administration Accelerated Program</fullName>
+                <default>false</default>
+                <label>Business Administration Accelerated Program</label>
+            </value>
+            <value>
+                <fullName>Business Administration - Accelerated Program</fullName>
+                <default>false</default>
+                <label>Business Administration - Accelerated Program</label>
+            </value>
+            <value>
+                <fullName>Business Intelligence (MBA)</fullName>
+                <default>false</default>
+                <label>Business Intelligence (MBA)</label>
+            </value>
+            <value>
+                <fullName>Cardiac Sonography</fullName>
+                <default>false</default>
+                <label>Cardiac Sonography</label>
+            </value>
+            <value>
+                <fullName>Cardiac Sonography (AAS)</fullName>
+                <default>false</default>
+                <label>Cardiac Sonography (AAS)</label>
+            </value>
+            <value>
+                <fullName>Cloud Security Risk Management - MSIS</fullName>
+                <default>false</default>
+                <label>Cloud Security Risk Management - MSIS</label>
+            </value>
+            <value>
+                <fullName>Cloud Security Risk Management - Post-Baccalaureate</fullName>
+                <default>false</default>
+                <label>Cloud Security Risk Management - Post-Baccalaureate</label>
+            </value>
+            <value>
+                <fullName>Computer Science</fullName>
+                <default>false</default>
+                <label>Computer Science</label>
+            </value>
+            <value>
+                <fullName>Computer Science (BS) - Artificial Intelligence</fullName>
+                <default>false</default>
+                <label>Computer Science (BS) - Artificial Intelligence</label>
+            </value>
+            <value>
+                <fullName>Computer Science (BS) - Computer Programming</fullName>
+                <default>false</default>
+                <label>Computer Science (BS) - Computer Programming</label>
+            </value>
+            <value>
+                <fullName>Computer Science (BS) - Data Analytics</fullName>
+                <default>false</default>
+                <label>Computer Science (BS) - Data Analytics</label>
+            </value>
+            <value>
+                <fullName>Computer Science - Artificial Intelligence Concentration</fullName>
+                <default>false</default>
+                <label>Computer Science - Artificial Intelligence Concentration</label>
+            </value>
+            <value>
+                <fullName>Computer Science - Database Technology</fullName>
+                <default>false</default>
+                <label>Computer Science - Database Technology</label>
+            </value>
+            <value>
+                <fullName>Counseling</fullName>
+                <default>false</default>
+                <label>Counseling</label>
+            </value>
+            <value>
+                <fullName>Counseling (MS)</fullName>
+                <default>false</default>
+                <label>Counseling (MS)</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice</fullName>
+                <default>false</default>
+                <label>Criminal Justice</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice (AAS) - Criminal Justice Studies</fullName>
+                <default>false</default>
+                <label>Criminal Justice (AAS) - Criminal Justice Studies</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice (AAS) - Law Enforcement &amp; Police Academy</fullName>
+                <default>false</default>
+                <label>Criminal Justice (AAS) - Law Enforcement &amp; Police Academy</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice (BS) - Criminal Justice Studies</fullName>
+                <default>false</default>
+                <label>Criminal Justice (BS) - Criminal Justice Studies</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice (BS) - Law Enforcement &amp; Police Academy</fullName>
+                <default>false</default>
+                <label>Criminal Justice (BS) - Law Enforcement &amp; Police Academy</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice-Associate</fullName>
+                <default>false</default>
+                <label>Criminal Justice-Associate</label>
+            </value>
+            <value>
+                <fullName>Criminal Justice - Law Enforcement Academy (Police)</fullName>
+                <default>false</default>
+                <label>Criminal Justice - Law Enforcement Academy (Police)</label>
+            </value>
+            <value>
+                <fullName>Culinary Arts</fullName>
+                <default>false</default>
+                <label>Culinary Arts</label>
+            </value>
+            <value>
+                <fullName>Culinary Arts (AAS)</fullName>
+                <default>false</default>
+                <label>Culinary Arts (AAS)</label>
+            </value>
+            <value>
+                <fullName>Data Science</fullName>
+                <default>false</default>
+                <label>Data Science</label>
+            </value>
+            <value>
+                <fullName>Data Science (MS)</fullName>
+                <default>false</default>
+                <label>Data Science (MS)</label>
+            </value>
+            <value>
+                <fullName>Dental Hygiene</fullName>
+                <default>false</default>
+                <label>Dental Hygiene</label>
+            </value>
+            <value>
+                <fullName>Diagnostic Medical Sonography</fullName>
+                <default>false</default>
+                <label>Diagnostic Medical Sonography</label>
+            </value>
+            <value>
+                <fullName>Diagnostic Medical Sonography (Abdomen/OB-GYN/Vascular)</fullName>
+                <default>false</default>
+                <label>Diagnostic Medical Sonography (Abdomen/OB-GYN/Vascular)</label>
+            </value>
+            <value>
+                <fullName>Diagnostic Sonography (AAS) - Abdomen/OB-GYN</fullName>
+                <default>false</default>
+                <label>Diagnostic Sonography (AAS) - Abdomen/OB-GYN</label>
+            </value>
+            <value>
+                <fullName>Diesel Service</fullName>
+                <default>false</default>
+                <label>Diesel Service</label>
+            </value>
+            <value>
+                <fullName>Diesel Service Technology</fullName>
+                <default>false</default>
+                <label>Diesel Service Technology</label>
+            </value>
+            <value>
+                <fullName>Diesel Service Technology (AAS)</fullName>
+                <default>false</default>
+                <label>Diesel Service Technology (AAS)</label>
+            </value>
+            <value>
+                <fullName>Diesel Service Technology (Certificate)</fullName>
+                <default>false</default>
+                <label>Diesel Service Technology (Certificate)</label>
+            </value>
+            <value>
+                <fullName>Diesel Service Technology-Certificate</fullName>
+                <default>false</default>
+                <label>Diesel Service Technology-Certificate</label>
+            </value>
+            <value>
+                <fullName>Early Childhood Education</fullName>
+                <default>false</default>
+                <label>Early Childhood Education</label>
+            </value>
+            <value>
+                <fullName>Early Childhood Education (AAS)</fullName>
+                <default>false</default>
+                <label>Early Childhood Education (AAS)</label>
+            </value>
+            <value>
+                <fullName>Early Childhood Education (Associate)</fullName>
+                <default>false</default>
+                <label>Early Childhood Education (Associate)</label>
+            </value>
+            <value>
+                <fullName>Early Childhood Education (BS)</fullName>
+                <default>false</default>
+                <label>Early Childhood Education (BS)</label>
+            </value>
+            <value>
+                <fullName>Early Childhood ZA to ZS - Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Early Childhood ZA to ZS - Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Early Childhood ZA-ZS-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Early Childhood ZA-ZS-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Early Childhood ZS (General &amp; Special Education) - Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Early Childhood ZS (General &amp; Special Education) - Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Early Childhood ZS (General &amp; Special Education)-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Early Childhood ZS (General &amp; Special Education)-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Educational Leadership (Ed.D)</fullName>
+                <default>false</default>
+                <label>Educational Leadership (Ed.D)</label>
+            </value>
+            <value>
+                <fullName>Elementary Education</fullName>
+                <default>false</default>
+                <label>Elementary Education</label>
+            </value>
+            <value>
+                <fullName>Elementary Education (BS)</fullName>
+                <default>false</default>
+                <label>Elementary Education (BS)</label>
+            </value>
+            <value>
+                <fullName>Elementary Education and Early Childhood Education - Level Change</fullName>
+                <default>false</default>
+                <label>Elementary Education and Early Childhood Education - Level Change</label>
+            </value>
+            <value>
+                <fullName>Elementary Education and Early Childhool Education-Level Change</fullName>
+                <default>false</default>
+                <label>Elementary Education and Early Childhool Education-Level Change</label>
+            </value>
+            <value>
+                <fullName>Elementary Education - Level Change</fullName>
+                <default>false</default>
+                <label>Elementary Education - Level Change</label>
+            </value>
+            <value>
+                <fullName>Elementary Education-Level Change</fullName>
+                <default>false</default>
+                <label>Elementary Education-Level Change</label>
+            </value>
+            <value>
+                <fullName>Elementary Language Arts - Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Elementary Language Arts - Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Elementary Language Arts-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Elementary Language Arts-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Elementary Mathematics - Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Elementary Mathematics - Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Elementary Mathematics-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Elementary Mathematics-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Elementary Social Studies-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Elementary Social Studies-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Elementary Teacher Preparation Early Childhood ZS</fullName>
+                <default>false</default>
+                <label>Elementary Teacher Preparation Early Childhood ZS</label>
+            </value>
+            <value>
+                <fullName>Elementary Teacher Preparation Early Childhood ZS (General &amp; Support Education)</fullName>
+                <default>false</default>
+                <label>Elementary Teacher Preparation Early Childhood ZS (General &amp; Support Education)</label>
+            </value>
+            <value>
+                <fullName>Elementary Teacher Preparation Language Arts</fullName>
+                <default>false</default>
+                <label>Elementary Teacher Preparation Language Arts</label>
+            </value>
+            <value>
+                <fullName>Elementary Teacher Preparation Mathematics</fullName>
+                <default>false</default>
+                <label>Elementary Teacher Preparation Mathematics</label>
+            </value>
+            <value>
+                <fullName>Elementary Teacher Preparation Social Studies</fullName>
+                <default>false</default>
+                <label>Elementary Teacher Preparation Social Studies</label>
+            </value>
+            <value>
+                <fullName>EMC Business Admininstration</fullName>
+                <default>false</default>
+                <label>EMC Business Admininstration</label>
+            </value>
+            <value>
+                <fullName>EMC Criminal Justice</fullName>
+                <default>false</default>
+                <label>EMC Criminal Justice</label>
+            </value>
+            <value>
+                <fullName>EMC Early Childhood Education</fullName>
+                <default>false</default>
+                <label>EMC Early Childhood Education</label>
+            </value>
+            <value>
+                <fullName>EMC General Studies - Computer Science</fullName>
+                <default>false</default>
+                <label>EMC General Studies - Computer Science</label>
+            </value>
+            <value>
+                <fullName>EMC General Studies - Health &amp; Medical Assistant</fullName>
+                <default>false</default>
+                <label>EMC General Studies - Health &amp; Medical Assistant</label>
+            </value>
+            <value>
+                <fullName>EMC General Studies - Health Science Preparation</fullName>
+                <default>false</default>
+                <label>EMC General Studies - Health Science Preparation</label>
+            </value>
+            <value>
+                <fullName>EMC General Studies - Information Systems</fullName>
+                <default>false</default>
+                <label>EMC General Studies - Information Systems</label>
+            </value>
+            <value>
+                <fullName>EMC General Studies - Information Technology and Security</fullName>
+                <default>false</default>
+                <label>EMC General Studies - Information Technology and Security</label>
+            </value>
+            <value>
+                <fullName>EMC Human Service Preparation</fullName>
+                <default>false</default>
+                <label>EMC Human Service Preparation</label>
+            </value>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <label>Engineering</label>
+            </value>
+            <value>
+                <fullName>Finance (4+1) (BBA)</fullName>
+                <default>false</default>
+                <label>Finance (4+1) (BBA)</label>
+            </value>
+            <value>
+                <fullName>Finance (BBA/MBA)</fullName>
+                <default>false</default>
+                <label>Finance (BBA/MBA)</label>
+            </value>
+            <value>
+                <fullName>Finance (BBA)</fullName>
+                <default>false</default>
+                <label>Finance (BBA)</label>
+            </value>
+            <value>
+                <fullName>Finance (MBA)</fullName>
+                <default>false</default>
+                <label>Finance (MBA)</label>
+            </value>
+            <value>
+                <fullName>Food and Beverage Management</fullName>
+                <default>false</default>
+                <label>Food and Beverage Management</label>
+            </value>
+            <value>
+                <fullName>Food and Beverage Management (AAS)</fullName>
+                <default>false</default>
+                <label>Food and Beverage Management (AAS)</label>
+            </value>
+            <value>
+                <fullName>Game Software Development</fullName>
+                <default>false</default>
+                <label>Game Software Development</label>
+            </value>
+            <value>
+                <fullName>Game Software Development (BS)</fullName>
+                <default>false</default>
+                <label>Game Software Development (BS)</label>
+            </value>
+            <value>
+                <fullName>General Science</fullName>
+                <default>false</default>
+                <label>General Science</label>
+            </value>
+            <value>
+                <fullName>General Science (BS)</fullName>
+                <default>false</default>
+                <label>General Science (BS)</label>
+            </value>
+            <value>
+                <fullName>General Studies</fullName>
+                <default>false</default>
+                <label>General Studies</label>
+            </value>
+            <value>
+                <fullName>General Studies (AAS)</fullName>
+                <default>false</default>
+                <label>General Studies (AAS)</label>
+            </value>
+            <value>
+                <fullName>General Studies (BGS)</fullName>
+                <default>false</default>
+                <label>General Studies (BGS)</label>
+            </value>
+            <value>
+                <fullName>General Studies - General Science</fullName>
+                <default>false</default>
+                <label>General Studies - General Science</label>
+            </value>
+            <value>
+                <fullName>Healthcare Administration (BS)</fullName>
+                <default>false</default>
+                <label>Healthcare Administration (BS)</label>
+            </value>
+            <value>
+                <fullName>Healthcare Management (MBA)</fullName>
+                <default>false</default>
+                <label>Healthcare Management (MBA)</label>
+            </value>
+            <value>
+                <fullName>Healthcare Management - MBA</fullName>
+                <default>false</default>
+                <label>Healthcare Management - MBA</label>
+            </value>
+            <value>
+                <fullName>Health Information Management</fullName>
+                <default>false</default>
+                <label>Health Information Management</label>
+            </value>
+            <value>
+                <fullName>Health Information Management (BS)</fullName>
+                <default>false</default>
+                <label>Health Information Management (BS)</label>
+            </value>
+            <value>
+                <fullName>Health Information Technology</fullName>
+                <default>false</default>
+                <label>Health Information Technology</label>
+            </value>
+            <value>
+                <fullName>Health Information Technology (AAS)</fullName>
+                <default>false</default>
+                <label>Health Information Technology (AAS)</label>
+            </value>
+            <value>
+                <fullName>Health Science</fullName>
+                <default>false</default>
+                <label>Health Science</label>
+            </value>
+            <value>
+                <fullName>Health Science Technology</fullName>
+                <default>false</default>
+                <label>Health Science Technology</label>
+            </value>
+            <value>
+                <fullName>High School Off Campus</fullName>
+                <default>false</default>
+                <label>High School Off Campus</label>
+            </value>
+            <value>
+                <fullName>Human Resource Management (4+1) (BBA)</fullName>
+                <default>false</default>
+                <label>Human Resource Management (4+1) (BBA)</label>
+            </value>
+            <value>
+                <fullName>Human Resource Management (BBA/MBA)</fullName>
+                <default>false</default>
+                <label>Human Resource Management (BBA/MBA)</label>
+            </value>
+            <value>
+                <fullName>Human Resource Management (BBA)</fullName>
+                <default>false</default>
+                <label>Human Resource Management (BBA)</label>
+            </value>
+            <value>
+                <fullName>Human Resource Management (MBA)</fullName>
+                <default>false</default>
+                <label>Human Resource Management (MBA)</label>
+            </value>
+            <value>
+                <fullName>Human Resource Management - MBA</fullName>
+                <default>false</default>
+                <label>Human Resource Management - MBA</label>
+            </value>
+            <value>
+                <fullName>Human Resources Management (4+1) (BBA)</fullName>
+                <default>false</default>
+                <label>Human Resources Management (4+1) (BBA)</label>
+            </value>
+            <value>
+                <fullName>Human Resources Management (BBA)</fullName>
+                <default>false</default>
+                <label>Human Resources Management (BBA)</label>
+            </value>
+            <value>
+                <fullName>Human Services</fullName>
+                <default>false</default>
+                <label>Human Services</label>
+            </value>
+            <value>
+                <fullName>Industrial/Organizational Psychology (MS)</fullName>
+                <default>false</default>
+                <label>Industrial/Organizational Psychology (MS)</label>
+            </value>
+            <value>
+                <fullName>Industrial Organizational Psychology (MS)</fullName>
+                <default>false</default>
+                <label>Industrial Organizational Psychology (MS)</label>
+            </value>
+            <value>
+                <fullName>Informatin Systems Information Systems (MS)</fullName>
+                <default>false</default>
+                <label>Informatin Systems Information Systems (MS)</label>
+            </value>
+            <value>
+                <fullName>Information Systems (BS)</fullName>
+                <default>false</default>
+                <label>Information Systems (BS)</label>
+            </value>
+            <value>
+                <fullName>Information Systems (BS) - Information Assurance Concentration</fullName>
+                <default>false</default>
+                <label>Information Systems (BS) - Information Assurance Concentration</label>
+            </value>
+            <value>
+                <fullName>Information Systems (BS) - Project Management Concentration</fullName>
+                <default>false</default>
+                <label>Information Systems (BS) - Project Management Concentration</label>
+            </value>
+            <value>
+                <fullName>Information Systems (BS) - Web Development Concentration</fullName>
+                <default>false</default>
+                <label>Information Systems (BS) - Web Development Concentration</label>
+            </value>
+            <value>
+                <fullName>Information Systems (MBA)</fullName>
+                <default>false</default>
+                <label>Information Systems (MBA)</label>
+            </value>
+            <value>
+                <fullName>Information Systems (MS)</fullName>
+                <default>false</default>
+                <label>Information Systems (MS)</label>
+            </value>
+            <value>
+                <fullName>Information Systems  (MS)</fullName>
+                <default>false</default>
+                <label>Information Systems  (MS)</label>
+            </value>
+            <value>
+                <fullName>Information Systems (MSIS)</fullName>
+                <default>false</default>
+                <label>Information Systems (MSIS)</label>
+            </value>
+            <value>
+                <fullName>Information Systems - Information Assurance</fullName>
+                <default>false</default>
+                <label>Information Systems - Information Assurance</label>
+            </value>
+            <value>
+                <fullName>Information Systems - MBA</fullName>
+                <default>false</default>
+                <label>Information Systems - MBA</label>
+            </value>
+            <value>
+                <fullName>Information Systems - Project Management</fullName>
+                <default>false</default>
+                <label>Information Systems - Project Management</label>
+            </value>
+            <value>
+                <fullName>Information Systems - Web &amp; Mobile Application Development</fullName>
+                <default>false</default>
+                <label>Information Systems - Web &amp; Mobile Application Development</label>
+            </value>
+            <value>
+                <fullName>Information Systems - Web Development</fullName>
+                <default>false</default>
+                <label>Information Systems - Web Development</label>
+            </value>
+            <value>
+                <fullName>Information Technology and Cybersecurity (BS)</fullName>
+                <default>false</default>
+                <label>Information Technology and Cybersecurity (BS)</label>
+            </value>
+            <value>
+                <fullName>Information Technology and Security (BS)</fullName>
+                <default>false</default>
+                <label>Information Technology and Security (BS)</label>
+            </value>
+            <value>
+                <fullName>Information Technology and Security - Concentration in Information Assurance</fullName>
+                <default>false</default>
+                <label>Information Technology and Security - Concentration in Information Assurance</label>
+            </value>
+            <value>
+                <fullName>Information Technology - Cyber Security</fullName>
+                <default>false</default>
+                <label>Information Technology - Cybersecurity</label>
+            </value>
+            <value>
+                <fullName>Information Technology - Information Security</fullName>
+                <default>false</default>
+                <label>Information Technology - Information Security</label>
+            </value>
+            <value>
+                <fullName>Juris Doctor</fullName>
+                <default>false</default>
+                <label>Juris Doctor</label>
+            </value>
+            <value>
+                <fullName>Leadership (BBA)</fullName>
+                <default>false</default>
+                <label>Leadership (BBA)</label>
+            </value>
+            <value>
+                <fullName>Leadership Studies (MBA)</fullName>
+                <default>false</default>
+                <label>Leadership Studies (MBA)</label>
+            </value>
+            <value>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+                <label>Logistics</label>
+            </value>
+            <value>
+                <fullName>Logistics (4+1)</fullName>
+                <default>false</default>
+                <label>Logistics (4+1)</label>
+            </value>
+            <value>
+                <fullName>Management</fullName>
+                <default>false</default>
+                <label>Management</label>
+            </value>
+            <value>
+                <fullName>Management (4+1) (BBA)</fullName>
+                <default>false</default>
+                <label>Management (4+1) (BBA)</label>
+            </value>
+            <value>
+                <fullName>Management (BBA/MBA)</fullName>
+                <default>false</default>
+                <label>Management (BBA/MBA)</label>
+            </value>
+            <value>
+                <fullName>Management (BBA)</fullName>
+                <default>false</default>
+                <label>Management (BBA)</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Marketing (4+1) (BBA)</fullName>
+                <default>false</default>
+                <label>Marketing (4+1) (BBA)</label>
+            </value>
+            <value>
+                <fullName>Marketing (BBA/MBA)</fullName>
+                <default>false</default>
+                <label>Marketing (BBA/MBA)</label>
+            </value>
+            <value>
+                <fullName>Marketing (BBA)</fullName>
+                <default>false</default>
+                <label>Marketing (BBA)</label>
+            </value>
+            <value>
+                <fullName>Mechanical Engineering</fullName>
+                <default>false</default>
+                <label>Mechanical Engineering</label>
+            </value>
+            <value>
+                <fullName>Mechatronics</fullName>
+                <default>false</default>
+                <label>Mechatronics</label>
+            </value>
+            <value>
+                <fullName>Mechatronics (AAS)</fullName>
+                <default>false</default>
+                <label>Mechatronics (AAS)</label>
+            </value>
+            <value>
+                <fullName>Medical Assistant</fullName>
+                <default>false</default>
+                <label>Medical Assistant</label>
+            </value>
+            <value>
+                <fullName>Medical Assistant (Certificate)</fullName>
+                <default>false</default>
+                <label>Medical Assistant (Certificate)</label>
+            </value>
+            <value>
+                <fullName>Medical Assisting</fullName>
+                <default>false</default>
+                <label>Medical Assisting</label>
+            </value>
+            <value>
+                <fullName>Nursing, RN to MSN</fullName>
+                <default>false</default>
+                <label>Nursing, RN to MSN</label>
+            </value>
+            <value>
+                <fullName>Nursing (BSN)</fullName>
+                <default>false</default>
+                <label>Nursing (BSN)</label>
+            </value>
+            <value>
+                <fullName>Nursing (BSN) - Accelerated</fullName>
+                <default>false</default>
+                <label>Nursing (BSN) - Accelerated</label>
+            </value>
+            <value>
+                <fullName>Nursing (BSN) - RN to BSN</fullName>
+                <default>false</default>
+                <label>Nursing (BSN) - RN to BSN</label>
+            </value>
+            <value>
+                <fullName>Nursing (MSN), RN to MSN</fullName>
+                <default>false</default>
+                <label>Nursing (MSN), RN to MSN</label>
+            </value>
+            <value>
+                <fullName>Nursing (Post-licensure)</fullName>
+                <default>false</default>
+                <label>Nursing (Post-licensure)</label>
+            </value>
+            <value>
+                <fullName>Nursing (Pre-licensure)</fullName>
+                <default>false</default>
+                <label>Nursing (Pre-licensure)</label>
+            </value>
+            <value>
+                <fullName>Nursing Administration (MSN)</fullName>
+                <default>false</default>
+                <label>Nursing Administration (MSN)</label>
+            </value>
+            <value>
+                <fullName>Nursing Education (MSN)</fullName>
+                <default>false</default>
+                <label>Nursing Education (MSN)</label>
+            </value>
+            <value>
+                <fullName>Nursing Post-RN Licensure</fullName>
+                <default>false</default>
+                <label>Nursing Post-RN Licensure</label>
+            </value>
+            <value>
+                <fullName>Nursing Pre-RN Licensure</fullName>
+                <default>false</default>
+                <label>Nursing Pre-RN Licensure</label>
+            </value>
+            <value>
+                <fullName>Occupational Therapy (MOT)</fullName>
+                <default>false</default>
+                <label>Occupational Therapy (MOT)</label>
+            </value>
+            <value>
+                <fullName>Occupational Therapy (MSOT)</fullName>
+                <default>false</default>
+                <label>Occupational Therapy (MSOT)</label>
+            </value>
+            <value>
+                <fullName>Occupational Therapy Assistant</fullName>
+                <default>false</default>
+                <label>Occupational Therapy Assistant</label>
+            </value>
+            <value>
+                <fullName>Occupational Therapy Assistant (AAS)</fullName>
+                <default>false</default>
+                <label>Occupational Therapy Assistant (AAS)</label>
+            </value>
+            <value>
+                <fullName>Occupational Therapy - MOT</fullName>
+                <default>false</default>
+                <label>Occupational Therapy - MOT</label>
+            </value>
+            <value>
+                <fullName>Operations Management</fullName>
+                <default>false</default>
+                <label>Operations Management</label>
+            </value>
+            <value>
+                <fullName>Operations Management (BS)</fullName>
+                <default>false</default>
+                <label>Operations Management (BS)</label>
+            </value>
+            <value>
+                <fullName>Physical Therapist Assistant</fullName>
+                <default>false</default>
+                <label>Physical Therapist Assistant</label>
+            </value>
+            <value>
+                <fullName>Physical Therapist Assistant (AAS)</fullName>
+                <default>false</default>
+                <label>Physical Therapist Assistant (AAS)</label>
+            </value>
+            <value>
+                <fullName>Physical Therapy Assistant</fullName>
+                <default>false</default>
+                <label>Physical Therapy Assistant</label>
+            </value>
+            <value>
+                <fullName>Planned Education Program</fullName>
+                <default>false</default>
+                <label>Planned Education Program</label>
+            </value>
+            <value>
+                <fullName>Pre-Occupational Therapy</fullName>
+                <default>false</default>
+                <label>Pre-Occupational Therapy</label>
+            </value>
+            <value>
+                <fullName>Project Management</fullName>
+                <default>false</default>
+                <label>Project Management</label>
+            </value>
+            <value>
+                <fullName>Project Management (BBA)</fullName>
+                <default>false</default>
+                <label>Project Management (BBA)</label>
+            </value>
+            <value>
+                <fullName>Psychology</fullName>
+                <default>false</default>
+                <label>Psychology</label>
+            </value>
+            <value>
+                <fullName>Psychology (BS)</fullName>
+                <default>false</default>
+                <label>Psychology (BS)</label>
+            </value>
+            <value>
+                <fullName>Psychology and Industrial Organizational Psychology (BS/MS)</fullName>
+                <default>false</default>
+                <label>Psychology and Industrial Organizational Psychology (BS/MS)</label>
+            </value>
+            <value>
+                <fullName>Radiation Therapy</fullName>
+                <default>false</default>
+                <label>Radiation Therapy</label>
+            </value>
+            <value>
+                <fullName>Radiologic Technology</fullName>
+                <default>false</default>
+                <label>Radiologic Technology</label>
+            </value>
+            <value>
+                <fullName>Radiologic Technology (AAS)</fullName>
+                <default>false</default>
+                <label>Radiologic Technology (AAS)</label>
+            </value>
+            <value>
+                <fullName>Running Start</fullName>
+                <default>false</default>
+                <label>Running Start</label>
+            </value>
+            <value>
+                <fullName>Secondary English-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Secondary English-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Secondary English-Level Change</fullName>
+                <default>false</default>
+                <label>Secondary English-Level Change</label>
+            </value>
+            <value>
+                <fullName>Secondary Math-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Secondary Math-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Secondary Math-Level Change</fullName>
+                <default>false</default>
+                <label>Secondary Math-Level Change</label>
+            </value>
+            <value>
+                <fullName>Secondary Social Studies-Additional Endorsement</fullName>
+                <default>false</default>
+                <label>Secondary Social Studies-Additional Endorsement</label>
+            </value>
+            <value>
+                <fullName>Secondary Social Studies-Level Change</fullName>
+                <default>false</default>
+                <label>Secondary Social Studies-Level Change</label>
+            </value>
+            <value>
+                <fullName>Secondary Teacher Preparation English and Mathematics - Double Major</fullName>
+                <default>false</default>
+                <label>Secondary Teacher Preparation English and Mathematics - Double Major</label>
+            </value>
+            <value>
+                <fullName>Secondary Teacher Preparation English and Social Studies - Double Major</fullName>
+                <default>false</default>
+                <label>Secondary Teacher Preparation English and Social Studies - Double Major</label>
+            </value>
+            <value>
+                <fullName>Secondary Teacher Preparation Mathematics</fullName>
+                <default>false</default>
+                <label>Secondary Teacher Preparation Mathematics</label>
+            </value>
+            <value>
+                <fullName>Secondary Teacher Preparation Mathematics and Social Studies - Double Major</fullName>
+                <default>false</default>
+                <label>Secondary Teacher Preparation Mathematics and Social Studies - Double Major</label>
+            </value>
+            <value>
+                <fullName>Secondary Teacher Preparation Social Studies</fullName>
+                <default>false</default>
+                <label>Secondary Teacher Preparation Social Studies</label>
+            </value>
+            <value>
+                <fullName>Social Work</fullName>
+                <default>false</default>
+                <label>Social Work</label>
+            </value>
+            <value>
+                <fullName>Social Work (BSW)</fullName>
+                <default>false</default>
+                <label>Social Work (BSW)</label>
+            </value>
+            <value>
+                <fullName>Special</fullName>
+                <default>false</default>
+                <label>Special</label>
+            </value>
+            <value>
+                <fullName>Sports and Esports Management</fullName>
+                <default>false</default>
+                <label>Sports and Esports Management</label>
+            </value>
+            <value>
+                <fullName>Sports and Esports Management (BS)</fullName>
+                <default>false</default>
+                <label>Sports and Esports Management (BS)</label>
+            </value>
+            <value>
+                <fullName>Supply Chain Management (BBA/MBA)</fullName>
+                <default>false</default>
+                <label>Supply Chain Management (BBA/MBA)</label>
+            </value>
+            <value>
+                <fullName>Supply Chain Management (BBA)</fullName>
+                <default>false</default>
+                <label>Supply Chain Management (BBA)</label>
+            </value>
+            <value>
+                <fullName>Surgical Technology</fullName>
+                <default>false</default>
+                <label>Surgical Technology</label>
+            </value>
+            <value>
+                <fullName>Surgical Technology (AAS)</fullName>
+                <default>false</default>
+                <label>Surgical Technology (AAS)</label>
+            </value>
+            <value>
+                <fullName>Undecided</fullName>
+                <default>false</default>
+                <label>Undecided</label>
+            </value>
+            <value>
+                <fullName>Veterinary Technology</fullName>
+                <default>false</default>
+                <label>Veterinary Technology</label>
+            </value>
+            <value>
+                <fullName>Veterinary Technology (AAS)</fullName>
+                <default>false</default>
+                <label>Veterinary Technology (AAS)</label>
+            </value>
+            <value>
+                <fullName>Welding</fullName>
+                <default>false</default>
+                <label>Welding</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

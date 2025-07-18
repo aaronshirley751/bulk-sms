@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Contact_Center_View_Phil_v2</fullName>
+    <columns>ACCOUNT.ACCOUNT_ID</columns>
+    <columns>FULL_NAME</columns>
+    <columns>Preferred_First_Name__c</columns>
+    <columns>Student_Type__c</columns>
+    <columns>Sync_Contact_to_CX__c</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>Niche_User_UUID__c</columns>
+    <columns>UPDATEDBY_USER.ALIAS</columns>
+    <columns>Account.Application_Type__c</columns>
+    <columns>CONTACT.LAST_UPDATE</columns>
+    <columns>CREATEDBY_USER.ALIAS</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.Parent</value>
+    </filters>
+    <filters>
+        <field>CONTACT.FIRST_NAME</field>
+        <operation>greaterThan</operation>
+    </filters>
+    <filters>
+        <field>Preferred_First_Name__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Copy of Contact Center View - Phil v2</label>
+    <sharedTo>
+        <group>Admin</group>
+    </sharedTo>
+</ListView>

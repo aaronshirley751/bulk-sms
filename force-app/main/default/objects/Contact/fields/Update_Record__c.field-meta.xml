@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_Record__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This is used to update a record  data loader so a workflow or process builder will run</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is used to update a record  data loader so a workflow or process builder will run</inlineHelpText>
+    <label>Update Record</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Checkbox</type>
+</CustomField>

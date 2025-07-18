@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Game_Position_of_Interest__c</fullName>
+    <externalId>false</externalId>
+    <label>Game/Position of Interest</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Apex Legends</fullName>
+                <default>false</default>
+                <label>Apex Legends</label>
+            </value>
+            <value>
+                <fullName>Call of Duty</fullName>
+                <default>false</default>
+                <label>Call of Duty</label>
+            </value>
+            <value>
+                <fullName>Chess</fullName>
+                <default>false</default>
+                <label>Chess</label>
+            </value>
+            <value>
+                <fullName>Counter-Strike</fullName>
+                <default>false</default>
+                <label>Counter-Strike</label>
+            </value>
+            <value>
+                <fullName>FIFA</fullName>
+                <default>false</default>
+                <label>FIFA</label>
+            </value>
+            <value>
+                <fullName>Fighting Games (Tekken, Mortal Kombat, etc.)</fullName>
+                <default>false</default>
+                <label>Fighting Games (Tekken, Mortal Kombat, etc.)</label>
+            </value>
+            <value>
+                <fullName>Fortnite</fullName>
+                <default>false</default>
+                <label>Fortnite</label>
+            </value>
+            <value>
+                <fullName>Halo</fullName>
+                <default>false</default>
+                <label>Halo</label>
+            </value>
+            <value>
+                <fullName>Hearthstone</fullName>
+                <default>false</default>
+                <label>Hearthstone</label>
+            </value>
+            <value>
+                <fullName>League of Legends</fullName>
+                <default>false</default>
+                <label>League of Legends</label>
+            </value>
+            <value>
+                <fullName>Madden</fullName>
+                <default>false</default>
+                <label>Madden</label>
+            </value>
+            <value>
+                <fullName>NBA 2K</fullName>
+                <default>false</default>
+                <label>NBA 2K</label>
+            </value>
+            <value>
+                <fullName>Overwatch</fullName>
+                <default>false</default>
+                <label>Overwatch</label>
+            </value>
+            <value>
+                <fullName>Rainbow 6: Siege</fullName>
+                <default>false</default>
+                <label>Rainbow 6: Siege</label>
+            </value>
+            <value>
+                <fullName>Rocket League</fullName>
+                <default>false</default>
+                <label>Rocket League</label>
+            </value>
+            <value>
+                <fullName>Super Smash Bros. Ultimate</fullName>
+                <default>false</default>
+                <label>Super Smash Bros. Ultimate</label>
+            </value>
+            <value>
+                <fullName>Valorant</fullName>
+                <default>false</default>
+                <label>Valorant</label>
+            </value>
+            <value>
+                <fullName>Student Staff (Production, Social Media, Managing, etc.)</fullName>
+                <default>false</default>
+                <label>Student Staff (Production, Social Media, Managing, etc.)</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

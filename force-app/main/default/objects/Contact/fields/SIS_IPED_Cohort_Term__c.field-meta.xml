@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SIS_IPED_Cohort_Term__c</fullName>
+    <externalId>false</externalId>
+    <label>SIS IPED Cohort Term</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Fall 2017</fullName>
+                <default>false</default>
+                <label>Fall 2017</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

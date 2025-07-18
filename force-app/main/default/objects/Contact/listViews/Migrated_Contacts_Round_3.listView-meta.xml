@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Migrated_Contacts_Round_3</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>CORE.USERS.ALIAS</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>CONTACT.CREATED_DATE</columns>
+    <columns>Consortium_Contact__c</columns>
+    <columns>Migrated_Record__c</columns>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>MailingCountry__c</columns>
+    <columns>OtherCountry__c</columns>
+    <columns>MailingState__c</columns>
+    <columns>Source__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.EnrollmentrxRx__Erx_Contact</value>
+    </filters>
+    <filters>
+        <field>Migrated_Record__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Migrated Contacts</label>
+</ListView>

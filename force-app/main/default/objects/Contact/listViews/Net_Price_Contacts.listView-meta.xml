@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Net_Price_Contacts</fullName>
+    <columns>FULL_NAME</columns>
+    <columns>CONTACT.PHONE1</columns>
+    <columns>CONTACT.EMAIL</columns>
+    <columns>EnrollmentrxRx__SIS_ID__c</columns>
+    <columns>EnrollmentrxRx__Active_Enrollment_Opportunity__c</columns>
+    <columns>EnrollmentrxRx__Admissions_Status__c</columns>
+    <columns>Integration_Flag_Match_Results__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Source_Code_Detail_Formula__c</field>
+        <operation>equals</operation>
+        <value>Net Price Calculator</value>
+    </filters>
+    <filters>
+        <field>CONTACT.RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Contact.EnrollmentrxRx__Erx_Contact</value>
+    </filters>
+    <label>Net Price Contacts</label>
+</ListView>
