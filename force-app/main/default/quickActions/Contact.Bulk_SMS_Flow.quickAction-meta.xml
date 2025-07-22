@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>58.0</apiVersion>
-    <fullName>Contact.Bulk_SMS_Flow</fullName>
-    <label>Bulk SMS</label>
-    <actionType>Flow</actionType>
-    <flow>Bulk_SMS_Flow</flow>
-</QuickAction>
