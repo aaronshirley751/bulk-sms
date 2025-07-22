@@ -339,7 +339,7 @@
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>CONTACT.PHONE1</customTabListAdditionalFields>
         <customTabListAdditionalFields>CONTACT.EMAIL</customTabListAdditionalFields>
-        <listViewButtons>Bulk_SMS_Button</listViewButtons>
+        <listViewButtons>Bulk_SMS_Flow</listViewButtons>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CONTACT.PHONE1</lookupDialogsAdditionalFields>

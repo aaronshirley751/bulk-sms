@@ -45,7 +45,7 @@
         <actionName>Send Bulk SMS</actionName>
         <actionType>apex</actionType>
         <inputParameters>
-            <name>contactIds</name>
+                        <n>recordIds</n>
             <value>
                 <elementReference>ids</elementReference>
             </value>
