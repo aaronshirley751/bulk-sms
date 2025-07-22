@@ -42,7 +42,7 @@
         <label>Send Bulk SMS</label>
         <locationX>50</locationX>
         <locationY>242</locationY>
-        <actionName>Send Bulk SMS</actionName>
+        <actionName>sendBulkSMSFromFlow</actionName>
         <actionType>apex</actionType>
         <inputParameters>
             <name>contactIds</name>
