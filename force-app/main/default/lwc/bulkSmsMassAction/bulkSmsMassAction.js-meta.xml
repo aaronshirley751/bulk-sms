@@ -6,12 +6,16 @@
     <description>Mass action for sending SMS to multiple contacts</description>
     <targets>
         <target>lightning__RecordAction</target>
+        <target>lightning__FlowScreen</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordAction">
             <objects>
                 <object>Contact</object>
             </objects>
+        </targetConfig>
+        <targetConfig targets="lightning__FlowScreen">
+            <property name="recordIds" type="String[]" role="inputOnly" description="Selected record IDs"/>
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
