@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <description>Flow for sending bulk SMS messages to selected contacts</description>
+    <label>Bulk SMS Flow</label>
+    <processType>Flow</processType>
+    <start>
+        <locationX>176</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>SMS_Input_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection of Contact IDs passed from the list view mass action</description>
+        <name>ids</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>SMS message content entered by user</description>
+        <name>smsMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <actionCalls>
+        <description>Call Apex method to send bulk SMS</description>
+        <name>Send_Bulk_SMS</name>
+        <label>Send Bulk SMS</label>
+        <locationX>176</locationX>
+        <locationY>278</locationY>
+        <actionName>BulkSMSController</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Screen</targetReference>
+        </faultConnector>
+        <inputParameters>
+            <name>recordIds</name>
+            <value>
+                <elementReference>ids</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>message</name>
+            <value>
+                <elementReference>smsMessage</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <screens>
+        <description>Screen for user to enter SMS message content</description>
+        <name>SMS_Input_Screen</name>
+        <label>SMS Message Input</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Set_SMS_Message</targetReference>
+        </connector>
+        <fields>
+            <name>SMS_Message_Input</name>
+            <dataType>String</dataType>
+            <fieldText>SMS Message</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <helpText>Enter the SMS message to send to all selected contacts.</helpText>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Success confirmation screen</description>
+        <name>Success_Screen</name>
+        <label>SMS Sent Successfully</label>
+        <locationX>176</locationX>
+        <locationY>422</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Success_Message</name>
+            <fieldText>SMS messages have been successfully sent to the selected contacts.</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <description>Error handling screen</description>
+        <name>Error_Screen</name>
+        <label>SMS Send Error</label>
+        <locationX>396</locationX>
+        <locationY>422</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText>An error occurred while sending SMS messages. Please try again or contact your administrator.</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <assignments>
+        <description>Assign the input field value to the smsMessage variable</description>
+        <name>Set_SMS_Message</name>
+        <label>Set SMS Message</label>
+        <locationX>176</locationX>
+        <locationY>206</locationY>
+        <assignmentItems>
+            <assignToReference>smsMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SMS_Message_Input</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Bulk_SMS</targetReference>
+        </connector>
+    </assignments>
+</Flow>

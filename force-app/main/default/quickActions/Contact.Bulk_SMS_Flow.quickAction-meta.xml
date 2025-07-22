@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QuickAction xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionSubtype>ScreenAction</actionSubtype>
-    <label>Bulk SMS</label>
-    <lightningWebComponent>listViewBulkSms</lightningWebComponent>
+    <description>Flow-based bulk SMS action for Lightning Experience</description>
+    <flowDefinition>Bulk_SMS_Flow</flowDefinition>
+    <label>Bulk SMS (Flow)</label>
     <optionsCreateFeedItem>false</optionsCreateFeedItem>
-    <type>LightningWebComponent</type>
+    <type>Flow</type>
 </QuickAction>

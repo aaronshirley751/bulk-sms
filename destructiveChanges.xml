@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-        <members>Contact.Bulk_SMS_Flow</members>
-        <name>QuickAction</name>
+        <members>Contact.Bulk_SMS_Lightning</members>
+        <name>WebLink</name>
+    </types>
+    <types>
+        <members>BulkSMSPage</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>BulkSMSPageController</members>
+        <name>ApexClass</name>
     </types>
     <version>58.0</version>
 </Package>
