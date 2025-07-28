@@ -42,4 +42,26 @@
         <type>Text</type>
         <length>255</length>
     </fields>
+    <fields>
+        <fullName>User__c</fullName>
+        <label>User</label>
+        <type>Lookup</type>
+        <referenceTo>User</referenceTo>
+        <relationshipLabel>User</relationshipLabel>
+        <relationshipName>User_SMS_Logs</relationshipName>
+    </fields>
+    <fields>
+        <fullName>Campaign__c</fullName>
+        <label>Campaign</label>
+        <type>Lookup</type>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Campaign</relationshipLabel>
+        <relationshipName>Campaign_SMS_Logs</relationshipName>
+    </fields>
+    <fields>
+        <fullName>Send_Timestamp__c</fullName>
+        <label>Send Timestamp</label>
+        <type>DateTime</type>
+        <required>false</required>
+    </fields>
 </CustomObject>

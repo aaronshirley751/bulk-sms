@@ -41,6 +41,14 @@
         <relationshipLabel>Campaign</relationshipLabel>
         <relationshipName>Campaign_SMS_Histories</relationshipName>
     </fields>
+    <fields>
+        <fullName>CampaignMember__c</fullName>
+        <label>Campaign Member</label>
+        <type>Lookup</type>
+        <referenceTo>CampaignMember</referenceTo>
+        <relationshipLabel>Campaign Member</relationshipLabel>
+        <relationshipName>CampaignMember_SMS_Histories</relationshipName>
+    </fields>
 
     <!-- Core fields -->
     <!-- Long-text example: Message_Text__c -->

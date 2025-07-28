@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <description>Screen Flow for sending bulk SMS to selected Contacts with template selection and custom message options</description>
+    <label>Bulk SMS Screen Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordLookups>
+        <description>Get SMS Templates for picklist display</description>
+        <name>Get_SMS_Templates</name>
+        <label>Get SMS Templates</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>SMS_Options_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>SMS_Template__mdt</object>
+        <sortField>MasterLabel</sortField>
+        <sortOrder>Asc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <screens>
+        <description>Screen for users to select SMS template or enter custom message</description>
+        <name>SMS_Options_Screen</name>
+        <label>SMS Options Screen</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Send_Bulk_SMS_Action</targetReference>
+        </connector>
+        <fields>
+            <name>MessageTypeRadio</name>
+            <choiceReferences>Template_Choice</choiceReferences>
+            <choiceReferences>Custom_Choice</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>Template</stringValue>
+            </defaultValue>
+            <fieldText>Message Type</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>TemplateSelection</name>
+            <choiceReferences>Template_Picklist_Choices</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Select SMS Template</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>MessageTypeRadio</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Template</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>CustomMessage</name>
+            <dataType>String</dataType>
+            <fieldText>Custom SMS Message</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>MessageTypeRadio</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Custom</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>FromAddress</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>+1234567890</stringValue>
+            </defaultValue>
+            <fieldText>From Phone Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_SMS_Templates</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description>Collection of selected Contact IDs passed from the Quick Action</description>
+        <name>SelectedContactIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>Message content to send (either from template or custom)</description>
+        <name>FinalMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <actionCalls>
+        <description>Call Apex method to send bulk SMS</description>
+        <name>Send_Bulk_SMS_Action</name>
+        <label>Send Bulk SMS Action</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <actionName>BulkSMSController</actionName>
+        <actionType>apex</actionType>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <inputParameters>
+            <name>recordIds</name>
+            <value>
+                <elementReference>SelectedContactIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>messageText</name>
+            <value>
+                <elementReference>FinalMessage</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>fromAddress</name>
+            <value>
+                <elementReference>FromAddress</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <screens>
+        <description>Success confirmation screen</description>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>SuccessMessage</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;Bulk SMS Sent Successfully!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Your SMS messages have been queued for delivery. Check the SMS History related list on each Contact record to track delivery status.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <choices>
+        <description>Choose to use an SMS template</description>
+        <name>Template_Choice</name>
+        <choiceText>Use SMS Template</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Template</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <description>Choose to enter a custom message</description>
+        <name>Custom_Choice</name>
+        <choiceText>Custom Message</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Custom</stringValue>
+        </value>
+    </choices>
+    <dynamicChoiceSets>
+        <description>Dynamic choices for SMS templates</description>
+        <name>Template_Picklist_Choices</name>
+        <dataType>String</dataType>
+        <displayField>MasterLabel</displayField>
+        <object>SMS_Template__mdt</object>
+        <valueField>DeveloperName</valueField>
+    </dynamicChoiceSets>
+</Flow>

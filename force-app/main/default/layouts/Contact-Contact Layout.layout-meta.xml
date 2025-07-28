@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>Message_Text__c</fields>
+        <fields>Status__c</fields>
+        <fields>Sent_Timestamp__c</fields>
+        <fields>Template_Used__c</fields>
+        <relatedList>SMS_History__c.Contact__c</relatedList>
+    </relatedLists>
+</Layout>
