@@ -66,20 +66,28 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
         // Chunk requests into sublists of 50 to respect callout limits
         Integer chunkSize = 50;
         for (Integer i = 0; i < requests.size(); i += chunkSize) {
-            List<GenesysSMSInvoker.SMSRequest> chunk = requests.subList(i, Math.min(requests.size(), i + chunkSize));
+            Integer endIndex = Math.min(requests.size(), i + chunkSize);
+            List<GenesysSMSInvoker.SMSRequest> chunk = new List<GenesysSMSInvoker.SMSRequest>();
+            for (Integer j = i; j < endIndex; j++) {
+                chunk.add(requests[j]);
+            }
             
             // Process each SMS in the chunk
             for (GenesysSMSInvoker.SMSRequest request : chunk) {
-                Boolean success = GenesysSMSInvoker.sendSMS(request.phoneNumber, request.messageContent);
+                GenesysSMSInvoker.SMSResponse response = GenesysSMSInvoker.sendSMSWithResponse(
+                    request.phoneNumber, 
+                    request.messageContent
+                );
                 
-                // Create SMS History record
-                SMS_History__c history = createSMSHistoryRecord(request, success);
+                // Create SMS History record with enhanced details
+                SMS_History__c history = createSMSHistoryRecord(request, response);
                 historyRecords.add(history);
                 
-                if (success) {
+                if (response.success) {
                     sentCount++;
                 } else {
                     failedCount++;
+                    System.debug(LoggingLevel.ERROR, 'SMS failed for ' + request.phoneNumber + ': ' + response.error);
                 }
             }
         }
@@ -127,21 +135,24 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
     /**
      * @description Creates an SMS History record for individual SMS tracking
      * @param request The SMS request
-     * @param success Whether the SMS was sent successfully
+     * @param response The API response with detailed information
      * @return SMS_History__c The history record
      */
-    private SMS_History__c createSMSHistoryRecord(GenesysSMSInvoker.SMSRequest request, Boolean success) {
+    private SMS_History__c createSMSHistoryRecord(GenesysSMSInvoker.SMSRequest request, GenesysSMSInvoker.SMSResponse response) {
         SMS_History__c history = new SMS_History__c(
             Contact__c = request.contactId,
             Message_Text__c = request.messageContent,
             Template_Used__c = this.templateUsed,
-            Status__c = success ? 'Sent' : 'Failed',
+            Status__c = response.success ? 'Sent' : 'Failed',
             Sent_Timestamp__c = System.now(),
             Campaign__c = this.campaignId
         );
         
-        if (!success) {
-            history.Error__c = 'SMS sending failed - please check Genesys API configuration';
+        if (response.success) {
+            history.Response__c = 'Message ID: ' + response.messageId + 
+                (String.isNotBlank(response.status) ? ', Status: ' + response.status : '');
+        } else {
+            history.Error__c = response.error;
         }
         
         return history;
