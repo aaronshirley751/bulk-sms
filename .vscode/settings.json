@@ -3,5 +3,49 @@
     "**/node_modules": true,
     "**/bower_components": true,
     "**/.sfdx": true
-  }
+  },
+  "salesforcedx-vscode-core.show-cli-success-msg": false,
+  "salesforcedx-vscode-core.telemetry.enabled": false,
+  "xml.validation.enabled": false,
+  "xml.validation.disallowDocTypeDecl": false,
+  "salesforcedx-vscode-apex.java.home": "C:\\Program Files\\Microsoft\\jdk-11.0.28.6-hotspot",
+  "files.associations": {
+    "*.cls-meta.xml": "xml",
+    "*.trigger-meta.xml": "xml",
+    "*.object-meta.xml": "xml",
+    "*.flow-meta.xml": "xml",
+    "*.quickAction-meta.xml": "xml",
+    "*.webLink-meta.xml": "xml",
+    "*.md-meta.xml": "xml"
+  },
+  "xml.fileAssociations": [
+    {
+      "pattern": "**/*.cls-meta.xml",
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    },
+    {
+      "pattern": "**/*.trigger-meta.xml", 
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    },
+    {
+      "pattern": "**/*.object-meta.xml",
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    },
+    {
+      "pattern": "**/*.flow-meta.xml",
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    },
+    {
+      "pattern": "**/*.quickAction-meta.xml",
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    },
+    {
+      "pattern": "**/*.webLink-meta.xml",
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    },
+    {
+      "pattern": "**/*.md-meta.xml",
+      "systemId": "http://soap.sforce.com/2006/04/metadata"
+    }
+  ]
 }

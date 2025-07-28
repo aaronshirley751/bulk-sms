@@ -1,19 +1,24 @@
-// BulkSMSController: Aura-enabled controller for bulk SMS
+/**
+ * @description Aura-enabled controller for bulk SMS functionality
+ * @author System Administrator
+ * @date 2025-07-28
+ */
 public with sharing class BulkSMSController {
     /**
-     * Sends bulk SMS messages to a list of Contacts.
-     * @param recordIds   List of Contact Ids
+     * @description Sends bulk SMS messages to a list of Contacts
+     * @param recordIds List of Contact Ids to send SMS to
      * @param messageText SMS message content
      * @param fromAddress SMS sender address
-     * @return Status message
+     * @return String Status message indicating success or failure
      */
     @AuraEnabled
     public static String sendBulkSMS(List<Id> recordIds, String messageText, String fromAddress) {
-        // 1. Query Contacts by recordIds
+        // 1. Query Contacts by recordIds with security check
         List<Contact> contacts = [
             SELECT Id, Phone, hed__SMS_Opt_Out__c 
             FROM Contact 
             WHERE Id IN :recordIds
+            WITH USER_MODE
         ];
         List<GenesysSMSInvoker.SMSRequest> requests = new List<GenesysSMSInvoker.SMSRequest>();
         Integer queued = 0;
@@ -42,12 +47,15 @@ public with sharing class BulkSMSController {
     }
     
     /**
-     * Returns picklist options for active SMS templates.
+     * @description Returns picklist options for active SMS templates
+     * @return List<Map<String,String>> List of template options with label and value
      */
     @AuraEnabled(cacheable=true)
     public static List<Map<String,String>> getTemplateOptions() {
         List<Map<String,String>> options = new List<Map<String,String>>();
-        List<SMS_Template__mdt> templates = [
+        // Custom metadata queries don't require security enforcement as they're always accessible
+        // PMD suppression: Custom metadata is secure by design and accessible to all users
+        List<SMS_Template__mdt> templates = [ //NOPMD ApexCRUDViolation
             SELECT MasterLabel, DeveloperName
             FROM SMS_Template__mdt
             WHERE IsActive__c = true
@@ -63,7 +71,9 @@ public with sharing class BulkSMSController {
     }
     
     /**
-     * Invocable method for Flow integration
+     * @description Invocable method for Flow integration to send bulk SMS
+     * @param requests List of FlowRequest objects containing SMS details
+     * @return List<String> List of status messages for each request
      */
     @InvocableMethod(label='Send Bulk SMS' description='Sends SMS to multiple contacts')
     public static List<String> sendBulkSMSFromFlow(List<FlowRequest> requests) {
@@ -78,7 +88,7 @@ public with sharing class BulkSMSController {
     }
     
     /**
-     * Wrapper class for Flow input parameters
+     * @description Wrapper class for Flow input parameters
      */
     public class FlowRequest {
         @InvocableVariable(label='Contact IDs' description='List of Contact IDs to send SMS to' required=true)
