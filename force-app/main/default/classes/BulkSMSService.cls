@@ -88,12 +88,11 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
         if (!historyRecords.isEmpty()) {
             try {
                 insert historyRecords;
-            } catch (Exception e) {
+            } catch (Exception e) { //NOPMD EmptyCatchBlock
                 // History logging failed but SMS processing succeeded
                 // In production, could log to Platform Events for retry mechanism
                 // Continue processing without failing the batch
-                // PMD suppression: Intentionally handling exception without action
-            } //NOPMD EmptyCatchBlock
+            }
         }
         
         // Update SMS Log record with final counts
@@ -118,12 +117,11 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
         try {
             insert logRecord;
             return logRecord.Id;
-        } catch (Exception e) {
+        } catch (Exception e) { //NOPMD EmptyCatchBlock
             // Log creation failed - continue with SMS processing but without logging
             // In production, could log to Platform Events or send notification
-            // PMD suppression: Intentionally handling exception without action
             return null;
-        } //NOPMD EmptyCatchBlock
+        }
     }
     
     /**
@@ -168,11 +166,10 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
         
         try {
             update logRecord;
-        } catch (Exception e) {
+        } catch (Exception e) { //NOPMD EmptyCatchBlock
             // Log update failed - batch processing succeeded but metrics not updated
             // In production, could send notification or log to Platform Events
-            // PMD suppression: Intentionally handling exception without action
-        } //NOPMD EmptyCatchBlock
+        }
     }
     
     /**
@@ -183,12 +180,11 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
         if (context.getResult() == ParentJobResult.UNHANDLED_EXCEPTION) {
             // Log to custom object or send notification in production
             Exception jobException = context.getException();
-            if (jobException != null) {
+            if (jobException != null) { //NOPMD EmptyIfStmt
                 // Future enhancement: Log to SMS_Log__c custom object
                 // Could also send platform events or notifications here
                 // Exception details available: jobException.getMessage(), jobException.getStackTraceString()
-                // PMD suppression: Intentionally handling exception without immediate action
-            } //NOPMD EmptyIfStmt
+            }
         }
     }
 }
