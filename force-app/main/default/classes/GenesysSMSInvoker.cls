@@ -11,11 +11,20 @@ public with sharing class GenesysSMSInvoker {
      * @description Wrapper class for SMS request data
      */
     public class SMSRequest {
+        @InvocableVariable(label='To Phone Number' required=true)
         public String phoneNumber;
-        public String message;
+        
+        @InvocableVariable(label='Message Content' required=true)
+        public String messageContent;
+        
+        @InvocableVariable(label='From Address' required=true)
         public String fromAddress;
+        
+        @InvocableVariable(label='Contact Id (optional)')
         public Id contactId;
-        public String messageContent; // For compatibility with BulkSMSService
+        
+        // Legacy field for backwards compatibility
+        public String message;
     }
     
     /**
@@ -26,6 +35,62 @@ public with sharing class GenesysSMSInvoker {
         public String messageId;
         public String error;
         public String status;
+    }
+    
+    /**
+     * @description Flow-callable method to send SMS messages via Genesys API
+     * @param requests List of SMS requests from Flow
+     */
+    @InvocableMethod(label='Send SMS via Genesys' description='Sends SMS messages through Genesys Cloud API')
+    public static void sendSMSFromFlow(List<SMSRequest> requests) {
+        for (SMSRequest req : requests) {
+            // Use future method for async processing to avoid callout limits
+            sendSMSFuture(req.phoneNumber, req.messageContent, req.fromAddress, req.contactId);
+        }
+    }
+    
+    /**
+     * @description Future method for async SMS sending
+     * @param phoneNumber Recipient phone number
+     * @param message SMS message content
+     * @param fromAddress Sender address
+     * @param contactId Related Contact ID
+     */
+    @future(callout=true)
+    public static void sendSMSFuture(String phoneNumber, String message, String fromAddress, Id contactId) {
+        try {
+            SMSResponse response = sendSMSWithResponse(phoneNumber, message);
+            
+            // Create SMS History record
+            SMS_History__c history = new SMS_History__c(
+                Contact__c = contactId,
+                Message_Text__c = message,
+                Status__c = response.success ? 'Sent' : 'Failed',
+                Sent_Timestamp__c = System.now()
+            );
+            
+            if (response.success) {
+                history.Response__c = 'Message ID: ' + response.messageId + 
+                    (String.isNotBlank(response.status) ? ', Status: ' + response.status : '');
+            } else {
+                history.Error__c = response.error;
+            }
+            
+            insert history;
+            
+        } catch (Exception e) {
+            // Create failed SMS History record
+            SMS_History__c history = new SMS_History__c(
+                Contact__c = contactId,
+                Message_Text__c = message,
+                Status__c = 'Failed',
+                Error__c = 'Exception: ' + e.getMessage(),
+                Sent_Timestamp__c = System.now()
+            );
+            insert history;
+            
+            System.debug(LoggingLevel.ERROR, 'SMS sending failed: ' + e.getMessage());
+        }
     }
     
     /**

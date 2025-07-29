@@ -1,67 +1,414 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>58.0</apiVersion>
-    <description>Bulk SMS Flow for sending SMS to multiple contacts from list view</description>
-    <label>Bulk SMS Flow</label>
-    <processType>Flow</processType>
-    <start>
-        <locationX>50</locationX>
-        <locationY>0</locationY>
+    <actionCalls>
+        <name>Send_Bulk_SMS</name>
+        <label>Send Bulk SMS</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <actionName>sendBulkSMSFromFlow</actionName>
+        <actionType>apex</actionType>
         <connector>
-            <targetReference>Bulk_SMS_Screen</targetReference>
+            <targetReference>Check_Results</targetReference>
         </connector>
-    </start>
-    <screens>
-        <name>Bulk_SMS_Screen</name>
-        <label>Bulk SMS</label>
-        <locationX>50</locationX>
-        <locationY>134</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <inputParameters>
+            <name>requests</name>
+            <value>
+                <elementReference>RequestStringList</elementReference>
+            </value>
+        </inputParameters>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>Build_SMS_Request</name>
+        <label>Build SMS Request</label>
+        <locationX>176</locationX>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>BuildContactIdString</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ContactIdsString</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>MessageText</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>FromAddress</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestStringList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>RequestString</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Send_Bulk_SMS</targetReference>
         </connector>
+    </assignments>
+    <assignments>
+        <name>Get_Template_Body</name>
+        <label>Get Template Body</label>
+        <locationX>50</locationX>
+        <locationY>300</locationY>
+        <assignmentItems>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>BuildContactIdString</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ContactIdsString</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>||</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>FromAddress</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>SelectedTemplate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>RequestStringList</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>RequestString</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Bulk_SMS</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>UseTemplate</name>
+        <choiceText>Use Template</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>UseTemplate</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>CustomMessage</name>
+        <choiceText>Custom Message</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>CustomMessage</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Check_Message_Type</name>
+        <label>Check Message Type</label>
+        <locationX>176</locationX>
+        <locationY>250</locationY>
+        <defaultConnector>
+            <targetReference>Build_SMS_Request</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Use Custom Message</defaultConnectorLabel>
+        <rules>
+            <name>Use_Template</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>SendOptions</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>UseTemplate</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Template_Body</targetReference>
+            </connector>
+            <label>Use Template</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Results</name>
+        <label>Check Results</label>
+        <locationX>176</locationX>
+        <locationY>450</locationY>
+        <defaultConnector>
+            <targetReference>Success_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Success</defaultConnectorLabel>
+        <rules>
+            <name>Has_Errors</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Send_Bulk_SMS</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Error</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Screen</targetReference>
+            </connector>
+            <label>Has Errors</label>
+        </rules>
+    </decisions>
+    <dynamicChoiceSets>
+        <name>TemplateChoices</name>
+        <dataType>String</dataType>
+        <displayField>MasterLabel</displayField>
+        <object>SMS_Template__mdt</object>
+        <outputAssignments>
+            <assignToReference>SelectedTemplateBody</assignToReference>
+            <field>MessageBody__c</field>
+        </outputAssignments>
+        <valueField>DeveloperName</valueField>
+    </dynamicChoiceSets>
+    <formulas>
+        <name>BuildContactIdString</name>
+        <dataType>String</dataType>
+        <expression>SUBSTITUTE(TEXT({!ids}), ";", ",")</expression>
+    </formulas>
+    <label>Bulk SMS Flow</label>
+    <processType>Flow</processType>
+    <recordLookups>
+        <name>Get_SMS_Templates</name>
+        <label>Get SMS Templates</label>
+        <locationX>176</locationX>
+        <locationY>150</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>SMS_Options_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>SMS_Template__mdt</object>
+        <outputReference>ActiveSMSTemplates</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>MasterLabel</queriedFields>
+        <queriedFields>DeveloperName</queriedFields>
+        <queriedFields>MessageBody__c</queriedFields>
+        <sortField>MasterLabel</sortField>
+        <sortOrder>Asc</sortOrder>
+    </recordLookups>
+    <screens>
+        <name>SMS_Options_Screen</name>
+        <label>SMS Options Screen</label>
+        <locationX>176</locationX>
+        <locationY>200</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Check_Message_Type</targetReference>
+        </connector>
         <fields>
-            <name>Selected_Contacts_Display</name>
-            <fieldText>Sending SMS to selected contacts</fieldText>
-            <fieldType>DisplayText</fieldType>
+            <name>SendOptions</name>
+            <choiceReferences>UseTemplate</choiceReferences>
+            <choiceReferences>CustomMessage</choiceReferences>
+            <dataType>String</dataType>
+            <defaultSelectedChoiceReference>CustomMessage</defaultSelectedChoiceReference>
+            <fieldText>Send Options</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
-            <name>SMS_Message</name>
+            <name>SelectedTemplate</name>
+            <choiceReferences>TemplateChoices</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Select SMS Template</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>SendOptions</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>UseTemplate</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>MessageText</name>
             <dataType>String</dataType>
             <fieldText>SMS Message</fieldText>
+            <fieldType>LargeTextArea</fieldType>
+            <helpText>Enter your SMS message (recommended 160 characters or less for single segment)</helpText>
+            <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>SendOptions</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>CustomMessage</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>FromAddress</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>+1234567890</stringValue>
+            </defaultValue>
+            <fieldText>From Phone Number</fieldText>
             <fieldType>InputField</fieldType>
+            <helpText>Phone number that will appear as the sender</helpText>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>ContactInfo</name>
+            <fieldText>Selected contacts will receive this SMS message</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <actionCalls>
-        <name>Send_Bulk_SMS</name>
-        <label>Send Bulk SMS</label>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
         <locationX>50</locationX>
-        <locationY>242</locationY>
-        <actionName>BulkSMSController</actionName>
-        <actionType>apex</actionType>
-        <inputParameters>
-            <name>contactIds</name>
-            <value>
-                <elementReference>ids</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>message</name>
-            <value>
-                <elementReference>SMS_Message</elementReference>
-            </value>
-        </inputParameters>
-    </actionCalls>
+        <locationY>550</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>SuccessMessage</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;✅ Bulk SMS Sent Successfully!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Your SMS messages have been queued for delivery through Genesys Cloud:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Message:&lt;/b&gt; {!FinalMessage}&lt;/li&gt;&lt;li&gt;&lt;b&gt;Template:&lt;/b&gt; {!SelectedTemplate}&lt;/li&gt;&lt;li&gt;&lt;b&gt;From:&lt;/b&gt; {!FromAddress}&lt;/li&gt;&lt;li&gt;&lt;b&gt;Recipients:&lt;/b&gt; Selected contact(s)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style="color: #0070d2;"&gt;📱 Check SMS History related lists on Contact records for delivery status.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>302</locationX>
+        <locationY>550</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;⚠️ SMS Sending Error&lt;/b&gt;&lt;/p&gt;&lt;p&gt;There was an issue sending some SMS messages. Please check:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Contact phone numbers are valid&lt;/li&gt;&lt;li&gt;Contacts have not opted out of SMS&lt;/li&gt;&lt;li&gt;Genesys Cloud connection is working&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Check SMS Log records for detailed error information.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_SMS_Templates</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
     <variables>
         <name>ids</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>ActiveSMSTemplates</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>SMS_Template__mdt</objectType>
+    </variables>
+    <variables>
+        <name>SelectedTemplateBody</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>ContactIdsString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>RequestString</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>RequestStringList</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
 </Flow>

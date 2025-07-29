@@ -41,37 +41,76 @@ public with sharing class BulkSMSController {
     }
     
     /**
-     * @description Invocable method for Flow integration to send bulk SMS
-     * @param requests List of FlowRequest objects containing SMS details
+     * @description Simple invocable method for Flow integration with basic parameters
+     * @param requests List of simple request strings in format: "contactIds|message|fromAddress|templateName"
      * @return List<String> List of status messages for each request
      */
     @InvocableMethod(label='Send Bulk SMS' description='Sends SMS to multiple contacts')
-    public static List<String> sendBulkSMSFromFlow(List<FlowRequest> requests) {
+    public static List<String> sendBulkSMSFromFlow(List<String> requests) {
         List<String> results = new List<String>();
         
-        for (FlowRequest req : requests) {
-            String finalMessage = req.message;
-            
-            // If template is specified, render it with merge fields
-            if (String.isNotBlank(req.templateName)) {
-                try {
-                    finalMessage = renderTemplateForContacts(req.templateName, req.contactIds);
-                } catch (Exception e) {
-                    results.add('Error rendering template: ' + e.getMessage());
+        for (String requestData : requests) {
+            try {
+                // Parse the request data: "contactIds|message|fromAddress|templateName"
+                List<String> parts = requestData.split('\\|');
+                if (parts.size() < 3) {
+                    results.add('Error: Invalid request format');
                     continue;
                 }
+                
+                String contactIdsStr = parts[0];
+                String message = parts[1];
+                String fromAddress = parts[2];
+                String templateName = parts.size() > 3 ? parts[3] : '';
+                
+                // Parse contact IDs
+                List<String> contactIdStrings = contactIdsStr.split(',');
+                List<Id> contactIds = new List<Id>();
+                for (String idStr : contactIdStrings) {
+                    if (String.isNotBlank(idStr.trim())) {
+                        contactIds.add((Id)idStr.trim());
+                    }
+                }
+                
+                if (contactIds.isEmpty()) {
+                    results.add('Error: No valid contact IDs provided');
+                    continue;
+                }
+                
+                // Create FlowRequest to reuse existing logic
+                FlowRequest req = new FlowRequest();
+                req.contactIds = contactIds;
+                req.message = message;
+                req.fromAddress = fromAddress;
+                req.templateName = templateName;
+                
+                // Process the request
+                String finalMessage = req.message;
+                
+                // If template is specified, render it with merge fields
+                if (String.isNotBlank(req.templateName)) {
+                    try {
+                        finalMessage = renderTemplateForContacts(req.templateName, req.contactIds);
+                    } catch (Exception e) {
+                        results.add('Error rendering template: ' + e.getMessage());
+                        continue;
+                    }
+                }
+                
+                // Create bulk SMS request
+                BulkSMSRequest bulkRequest = new BulkSMSRequest();
+                bulkRequest.recordIds = req.contactIds;
+                bulkRequest.messageText = finalMessage;
+                bulkRequest.fromAddress = req.fromAddress;
+                bulkRequest.templateUsed = req.templateName;
+                bulkRequest.campaignId = req.campaignId;
+                
+                String result = sendBulkSMS(bulkRequest);
+                results.add(result);
+                
+            } catch (Exception e) {
+                results.add('Error processing request: ' + e.getMessage());
             }
-            
-            // Create bulk SMS request
-            BulkSMSRequest bulkRequest = new BulkSMSRequest();
-            bulkRequest.recordIds = req.contactIds;
-            bulkRequest.messageText = finalMessage;
-            bulkRequest.fromAddress = req.fromAddress;
-            bulkRequest.templateUsed = req.templateName;
-            bulkRequest.campaignId = req.campaignId;
-            
-            String result = sendBulkSMS(bulkRequest);
-            results.add(result);
         }
         
         return results;

@@ -1,103 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>58.0</apiVersion>
-    <description>Screen Flow for sending bulk SMS to selected Contacts with template selection and custom message options</description>
-    <label>Bulk SMS Screen Flow</label>
-    <processMetadataValues>
-        <name>BuilderType</name>
-        <value>
-            <stringValue>LightningFlowBuilder</stringValue>
-        </value>
-    </processMetadataValues>
-    <processMetadataValues>
-        <name>CanvasMode</name>
-        <value>
-            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
-        </value>
-    </processMetadataValues>
-    <processType>Flow</processType>
-    <recordLookups>
-        <description>Get SMS Templates for picklist display</description>
-        <name>Get_SMS_Templates</name>
-        <label>Get SMS Templates</label>
+    <actionCalls>
+        <name>Send_Bulk_SMS_Action</name>
+        <label>Send Bulk SMS Action</label>
         <locationX>176</locationX>
-        <locationY>134</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <locationY>400</locationY>
+        <actionName>flowSMSSender</actionName>
+        <actionType>apex</actionType>
         <connector>
-            <targetReference>SMS_Options_Screen</targetReference>
+            <targetReference>Check_Results</targetReference>
         </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>IsActive__c</field>
-            <operator>EqualTo</operator>
+        <inputParameters>
+            <name>contextData</name>
             <value>
-                <booleanValue>true</booleanValue>
+                <elementReference>SMSContextString</elementReference>
             </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>SMS_Template__mdt</object>
-        <sortField>MasterLabel</sortField>
-        <sortOrder>Asc</sortOrder>
+        </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <screens>
-        <description>Screen for users to select SMS template or enter custom message</description>
-        <name>SMS_Options_Screen</name>
-        <label>SMS Options Screen</label>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>Build_Contact_IDs_String</name>
+        <label>Build Contact IDs String</label>
         <locationX>176</locationX>
-        <locationY>242</locationY>
-        <allowBack>true</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
+        <locationY>250</locationY>
+        <assignmentItems>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Contact_IDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Contact_ID_To_String</name>
+        <label>Add Contact ID To String</label>
+        <locationX>50</locationX>
+        <locationY>320</locationY>
+        <assignmentItems>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>CurrentContactId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>,</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Contact_IDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Create_Context_String</name>
+        <label>Create Context String</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>ContactIdsString</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|||</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>MessageText</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|||</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>FromAddress</elementReference>
+            </value>
+        </assignmentItems>
         <connector>
             <targetReference>Send_Bulk_SMS_Action</targetReference>
         </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Results</name>
+        <label>Check Results</label>
+        <locationX>176</locationX>
+        <locationY>500</locationY>
+        <defaultConnector>
+            <targetReference>Success_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Success</defaultConnectorLabel>
+        <rules>
+            <name>Has_Errors</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Send_Bulk_SMS_Action</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Error</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Error_Screen</targetReference>
+            </connector>
+            <label>Has Errors</label>
+        </rules>
+    </decisions>
+    <label>Bulk SMS Screen Flow</label>
+    <loops>
+        <name>Loop_Contact_IDs</name>
+        <label>Loop Contact IDs</label>
+        <locationX>176</locationX>
+        <locationY>300</locationY>
+        <assignNextValueToReference>CurrentContactId</assignNextValueToReference>
+        <collectionReference>ids</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_Contact_ID_To_String</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Context_String</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processType>Flow</processType>
+    <screens>
+        <name>SMS_Options_Screen</name>
+        <label>SMS Options Screen</label>
+        <locationX>176</locationX>
+        <locationY>200</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Build_Contact_IDs_String</targetReference>
+        </connector>
         <fields>
-            <name>MessageTypeRadio</name>
-            <choiceReferences>Template_Choice</choiceReferences>
-            <choiceReferences>Custom_Choice</choiceReferences>
+            <name>MessageText</name>
             <dataType>String</dataType>
-            <defaultValue>
-                <stringValue>Template</stringValue>
-            </defaultValue>
-            <fieldText>Message Type</fieldText>
-            <fieldType>RadioButtons</fieldType>
-            <isRequired>true</isRequired>
-        </fields>
-        <fields>
-            <name>TemplateSelection</name>
-            <choiceReferences>Template_Picklist_Choices</choiceReferences>
-            <dataType>String</dataType>
-            <fieldText>Select SMS Template</fieldText>
-            <fieldType>DropdownBox</fieldType>
-            <isRequired>false</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>MessageTypeRadio</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <stringValue>Template</stringValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
-        </fields>
-        <fields>
-            <name>CustomMessage</name>
-            <dataType>String</dataType>
-            <fieldText>Custom SMS Message</fieldText>
+            <fieldText>SMS Message</fieldText>
             <fieldType>LargeTextArea</fieldType>
-            <isRequired>false</isRequired>
-            <visibilityRule>
-                <conditionLogic>and</conditionLogic>
-                <conditions>
-                    <leftValueReference>MessageTypeRadio</leftValueReference>
-                    <operator>EqualTo</operator>
-                    <rightValue>
-                        <stringValue>Custom</stringValue>
-                    </rightValue>
-                </conditions>
-            </visibilityRule>
+            <helpText>Enter your SMS message (recommended 160 characters or less for single segment)</helpText>
+            <isRequired>true</isRequired>
         </fields>
         <fields>
             <name>FromAddress</name>
@@ -107,7 +171,45 @@
             </defaultValue>
             <fieldText>From Phone Number</fieldText>
             <fieldType>InputField</fieldType>
+            <helpText>Phone number that will appear as the sender</helpText>
             <isRequired>true</isRequired>
+        </fields>
+        <fields>
+            <name>ContactInfo</name>
+            <fieldText>Selected contacts will receive this SMS message</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>50</locationX>
+        <locationY>600</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>SuccessMessage</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;✅ Bulk SMS Sent Successfully!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Your SMS messages have been queued for delivery through Genesys Cloud:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Message:&lt;/b&gt; {!MessageText}&lt;/li&gt;&lt;li&gt;&lt;b&gt;From:&lt;/b&gt; {!FromAddress}&lt;/li&gt;&lt;li&gt;&lt;b&gt;Recipients:&lt;/b&gt; Selected contact(s)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;span style="color: #0070d2;"&gt;📱 Check SMS History related lists on Contact records for delivery status.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Error_Screen</name>
+        <label>Error Screen</label>
+        <locationX>302</locationX>
+        <locationY>600</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>ErrorMessage</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;⚠️ SMS Sending Error&lt;/b&gt;&lt;/p&gt;&lt;p&gt;There was an issue sending some SMS messages. Please check:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Contact phone numbers are valid&lt;/li&gt;&lt;li&gt;Contacts have not opted out of SMS&lt;/li&gt;&lt;li&gt;Genesys Cloud connection is working&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Check SMS Log records for detailed error information.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
@@ -116,98 +218,36 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>Get_SMS_Templates</targetReference>
+            <targetReference>SMS_Options_Screen</targetReference>
         </connector>
     </start>
     <status>Active</status>
     <variables>
-        <description>Collection of selected Contact IDs passed from the Quick Action</description>
-        <name>SelectedContactIds</name>
+        <name>ids</name>
         <dataType>String</dataType>
         <isCollection>true</isCollection>
         <isInput>true</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <description>Message content to send (either from template or custom)</description>
-        <name>FinalMessage</name>
+        <name>SMSContextString</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
-    <actionCalls>
-        <description>Call Apex method to send bulk SMS</description>
-        <name>Send_Bulk_SMS_Action</name>
-        <label>Send Bulk SMS Action</label>
-        <locationX>176</locationX>
-        <locationY>350</locationY>
-        <actionName>BulkSMSController</actionName>
-        <actionType>apex</actionType>
-        <connector>
-            <targetReference>Success_Screen</targetReference>
-        </connector>
-        <inputParameters>
-            <name>recordIds</name>
-            <value>
-                <elementReference>SelectedContactIds</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>messageText</name>
-            <value>
-                <elementReference>FinalMessage</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>fromAddress</name>
-            <value>
-                <elementReference>FromAddress</elementReference>
-            </value>
-        </inputParameters>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </actionCalls>
-    <screens>
-        <description>Success confirmation screen</description>
-        <name>Success_Screen</name>
-        <label>Success Screen</label>
-        <locationX>176</locationX>
-        <locationY>458</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>SuccessMessage</name>
-            <fieldText>&lt;p&gt;&lt;b&gt;Bulk SMS Sent Successfully!&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Your SMS messages have been queued for delivery. Check the SMS History related list on each Contact record to track delivery status.&lt;/p&gt;</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>true</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
-    <choices>
-        <description>Choose to use an SMS template</description>
-        <name>Template_Choice</name>
-        <choiceText>Use SMS Template</choiceText>
+    <variables>
+        <name>ContactIdsString</name>
         <dataType>String</dataType>
-        <value>
-            <stringValue>Template</stringValue>
-        </value>
-    </choices>
-    <choices>
-        <description>Choose to enter a custom message</description>
-        <name>Custom_Choice</name>
-        <choiceText>Custom Message</choiceText>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>CurrentContactId</name>
         <dataType>String</dataType>
-        <value>
-            <stringValue>Custom</stringValue>
-        </value>
-    </choices>
-    <dynamicChoiceSets>
-        <description>Dynamic choices for SMS templates</description>
-        <name>Template_Picklist_Choices</name>
-        <dataType>String</dataType>
-        <displayField>MasterLabel</displayField>
-        <object>SMS_Template__mdt</object>
-        <valueField>DeveloperName</valueField>
-    </dynamicChoiceSets>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
 </Flow>
