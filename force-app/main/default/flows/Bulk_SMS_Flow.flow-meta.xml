@@ -1,145 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionCalls>
-        <name>Send_Bulk_SMS</name>
-        <label>Send Bulk SMS</label>
+        <name>Send_Bulk_SMS_Action</name>
+        <label>Send Bulk SMS Action</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
-        <actionName>sendBulkSMSFromFlow</actionName>
+        <locationY>500</locationY>
+        <actionName>flowSMSSender</actionName>
         <actionType>apex</actionType>
         <connector>
             <targetReference>Check_Results</targetReference>
         </connector>
         <inputParameters>
-            <name>requests</name>
+            <name>contextData</name>
             <value>
-                <elementReference>RequestStringList</elementReference>
+                <elementReference>SMSContextString</elementReference>
             </value>
         </inputParameters>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </actionCalls>
     <apiVersion>58.0</apiVersion>
     <assignments>
-        <name>Build_SMS_Request</name>
-        <label>Build SMS Request</label>
+        <name>Build_Contact_IDs_String</name>
+        <label>Build Contact IDs String</label>
         <locationX>176</locationX>
-        <locationY>300</locationY>
+        <locationY>350</locationY>
         <assignmentItems>
             <assignToReference>ContactIdsString</assignToReference>
             <operator>Assign</operator>
             <value>
-                <elementReference>BuildContactIdString</elementReference>
+                <stringValue></stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Contact_IDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_Contact_ID_To_String</name>
+        <label>Add Contact ID To String</label>
+        <locationX>50</locationX>
+        <locationY>420</locationY>
+        <assignmentItems>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>CurrentContactId</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
+            <assignToReference>ContactIdsString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>,</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Contact_IDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Create_Context_String</name>
+        <label>Create Context String</label>
+        <locationX>176</locationX>
+        <locationY>450</locationY>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
             <operator>Assign</operator>
             <value>
                 <elementReference>ContactIdsString</elementReference>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
+            <assignToReference>SMSContextString</assignToReference>
             <operator>Add</operator>
             <value>
-                <stringValue>|</stringValue>
+                <stringValue>|||</stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
+            <assignToReference>SMSContextString</assignToReference>
             <operator>Add</operator>
+            <value>
+                <elementReference>FinalMessage</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>|||</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>FromAddress</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Bulk_SMS_Action</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Template_Message</name>
+        <label>Set Template Message</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>FinalMessage</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>SelectedTemplateBody</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Build_Contact_IDs_String</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Set_Custom_Message</name>
+        <label>Set Custom Message</label>
+        <locationX>302</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>FinalMessage</assignToReference>
+            <operator>Assign</operator>
             <value>
                 <elementReference>MessageText</elementReference>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>|</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>FromAddress</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>|</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestStringList</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>RequestString</elementReference>
-            </value>
-        </assignmentItems>
         <connector>
-            <targetReference>Send_Bulk_SMS</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Get_Template_Body</name>
-        <label>Get Template Body</label>
-        <locationX>50</locationX>
-        <locationY>300</locationY>
-        <assignmentItems>
-            <assignToReference>ContactIdsString</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>BuildContactIdString</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>ContactIdsString</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>||</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>FromAddress</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <stringValue>|</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestString</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>SelectedTemplate</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>RequestStringList</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>RequestString</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Send_Bulk_SMS</targetReference>
+            <targetReference>Build_Contact_IDs_String</targetReference>
         </connector>
     </assignments>
     <choices>
@@ -162,9 +154,9 @@
         <name>Check_Message_Type</name>
         <label>Check Message Type</label>
         <locationX>176</locationX>
-        <locationY>250</locationY>
+        <locationY>300</locationY>
         <defaultConnector>
-            <targetReference>Build_SMS_Request</targetReference>
+            <targetReference>Set_Custom_Message</targetReference>
         </defaultConnector>
         <defaultConnectorLabel>Use Custom Message</defaultConnectorLabel>
         <rules>
@@ -178,7 +170,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>Get_Template_Body</targetReference>
+                <targetReference>Set_Template_Message</targetReference>
             </connector>
             <label>Use Template</label>
         </rules>
@@ -187,7 +179,7 @@
         <name>Check_Results</name>
         <label>Check Results</label>
         <locationX>176</locationX>
-        <locationY>450</locationY>
+        <locationY>600</locationY>
         <defaultConnector>
             <targetReference>Success_Screen</targetReference>
         </defaultConnector>
@@ -196,7 +188,7 @@
             <name>Has_Errors</name>
             <conditionLogic>and</conditionLogic>
             <conditions>
-                <leftValueReference>Send_Bulk_SMS</leftValueReference>
+                <leftValueReference>Send_Bulk_SMS_Action</leftValueReference>
                 <operator>Contains</operator>
                 <rightValue>
                     <stringValue>Error</stringValue>
@@ -215,16 +207,26 @@
         <object>SMS_Template__mdt</object>
         <outputAssignments>
             <assignToReference>SelectedTemplateBody</assignToReference>
-            <field>MessageBody__c</field>
+            <field>Body__c</field>
         </outputAssignments>
         <valueField>DeveloperName</valueField>
     </dynamicChoiceSets>
-    <formulas>
-        <name>BuildContactIdString</name>
-        <dataType>String</dataType>
-        <expression>SUBSTITUTE(TEXT({!ids}), ";", ",")</expression>
-    </formulas>
     <label>Bulk SMS Flow</label>
+    <loops>
+        <name>Loop_Contact_IDs</name>
+        <label>Loop Contact IDs</label>
+        <locationX>176</locationX>
+        <locationY>400</locationY>
+        <assignNextValueToReference>CurrentContactId</assignNextValueToReference>
+        <collectionReference>ids</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Add_Contact_ID_To_String</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Create_Context_String</targetReference>
+        </noMoreValuesConnector>
+    </loops>
     <processType>Flow</processType>
     <recordLookups>
         <name>Get_SMS_Templates</name>
@@ -248,7 +250,7 @@
         <queriedFields>Id</queriedFields>
         <queriedFields>MasterLabel</queriedFields>
         <queriedFields>DeveloperName</queriedFields>
-        <queriedFields>MessageBody__c</queriedFields>
+        <queriedFields>Body__c</queriedFields>
         <sortField>MasterLabel</sortField>
         <sortOrder>Asc</sortOrder>
     </recordLookups>
@@ -256,7 +258,7 @@
         <name>SMS_Options_Screen</name>
         <label>SMS Options Screen</label>
         <locationX>176</locationX>
-        <locationY>200</locationY>
+        <locationY>250</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -332,7 +334,7 @@
         <name>Success_Screen</name>
         <label>Success Screen</label>
         <locationX>50</locationX>
-        <locationY>550</locationY>
+        <locationY>700</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -348,13 +350,13 @@
         <name>Error_Screen</name>
         <label>Error Screen</label>
         <locationX>302</locationX>
-        <locationY>550</locationY>
+        <locationY>700</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
         <fields>
             <name>ErrorMessage</name>
-            <fieldText>&lt;p&gt;&lt;b&gt;⚠️ SMS Sending Error&lt;/b&gt;&lt;/p&gt;&lt;p&gt;There was an issue sending some SMS messages. Please check:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Contact phone numbers are valid&lt;/li&gt;&lt;li&gt;Contacts have not opted out of SMS&lt;/li&gt;&lt;li&gt;Genesys Cloud connection is working&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Check SMS Log records for detailed error information.&lt;/p&gt;</fieldText>
+            <fieldText>&lt;p&gt;&lt;b&gt;⚠️ SMS Sending Error&lt;/b&gt;&lt;/p&gt;&lt;p&gt;There was an issue sending some SMS messages. Please check:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Contact phone numbers are valid&lt;/li&gt;&lt;li&gt;Contacts have not opted out of SMS&lt;/li&gt;&lt;li&gt;&lt;Genesys Cloud connection is working&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Check SMS Log records for detailed error information.&lt;/p&gt;</fieldText>
             <fieldType>DisplayText</fieldType>
         </fields>
         <showFooter>true</showFooter>
@@ -398,16 +400,23 @@
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>RequestString</name>
+        <name>SMSContextString</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>
     <variables>
-        <name>RequestStringList</name>
+        <name>CurrentContactId</name>
         <dataType>String</dataType>
-        <isCollection>true</isCollection>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>FinalMessage</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
         <isInput>false</isInput>
         <isOutput>false</isOutput>
     </variables>

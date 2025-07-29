@@ -4,7 +4,7 @@
         <name>Send_Bulk_SMS_Action</name>
         <label>Send Bulk SMS Action</label>
         <locationX>176</locationX>
-        <locationY>400</locationY>
+        <locationY>550</locationY>
         <actionName>flowSMSSender</actionName>
         <actionType>apex</actionType>
         <connector>
@@ -23,7 +23,7 @@
         <name>Build_Contact_IDs_String</name>
         <label>Build Contact IDs String</label>
         <locationX>176</locationX>
-        <locationY>250</locationY>
+        <locationY>350</locationY>
         <assignmentItems>
             <assignToReference>ContactIdsString</assignToReference>
             <operator>Assign</operator>
@@ -39,7 +39,7 @@
         <name>Add_Contact_ID_To_String</name>
         <label>Add Contact ID To String</label>
         <locationX>50</locationX>
-        <locationY>320</locationY>
+        <locationY>420</locationY>
         <assignmentItems>
             <assignToReference>ContactIdsString</assignToReference>
             <operator>Add</operator>
@@ -62,7 +62,7 @@
         <name>Create_Context_String</name>
         <label>Create Context String</label>
         <locationX>176</locationX>
-        <locationY>350</locationY>
+        <locationY>450</locationY>
         <assignmentItems>
             <assignToReference>SMSContextString</assignToReference>
             <operator>Assign</operator>
@@ -75,6 +75,34 @@
             <operator>Add</operator>
             <value>
                 <stringValue>|||</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>UseTemplate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue> ? </stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>SelectedTemplate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>SMSContextString</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue> : </stringValue>
             </value>
         </assignmentItems>
         <assignmentItems>
@@ -103,10 +131,35 @@
         </connector>
     </assignments>
     <decisions>
+        <name>Check_Message_Type</name>
+        <label>Check Message Type</label>
+        <locationX>176</locationX>
+        <locationY>150</locationY>
+        <defaultConnector>
+            <targetReference>SMS_Options_Screen</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Custom Message</defaultConnectorLabel>
+        <rules>
+            <name>Use_Template</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UseTemplate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Build_Contact_IDs_String</targetReference>
+            </connector>
+            <label>Use Template</label>
+        </rules>
+    </decisions>
+    <decisions>
         <name>Check_Results</name>
         <label>Check Results</label>
         <locationX>176</locationX>
-        <locationY>500</locationY>
+        <locationY>600</locationY>
         <defaultConnector>
             <targetReference>Success_Screen</targetReference>
         </defaultConnector>
@@ -132,7 +185,7 @@
         <name>Loop_Contact_IDs</name>
         <label>Loop Contact IDs</label>
         <locationX>176</locationX>
-        <locationY>300</locationY>
+        <locationY>400</locationY>
         <assignNextValueToReference>CurrentContactId</assignNextValueToReference>
         <collectionReference>ids</collectionReference>
         <iterationOrder>Asc</iterationOrder>
@@ -145,10 +198,55 @@
     </loops>
     <processType>Flow</processType>
     <screens>
+        <name>Template_Selection_Screen</name>
+        <label>Template Selection Screen</label>
+        <locationX>176</locationX>
+        <locationY>50</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Check_Message_Type</targetReference>
+        </connector>
+        <fields>
+            <name>UseTemplate</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Use SMS Template</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText>Toggle on to use a predefined SMS template, or toggle off to enter a custom message</helpText>
+        </fields>
+        <fields>
+            <name>SelectedTemplate</name>
+            <choiceReferences>SMS_Template_Choices</choiceReferences>
+            <dataType>String</dataType>
+            <fieldText>Select SMS Template</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <helpText>Choose from available SMS templates</helpText>
+            <isRequired>false</isRequired>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>UseTemplate</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>true</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>TemplateInfo</name>
+            <fieldText>&lt;p&gt;&lt;b&gt;📱 SMS Template Options&lt;/b&gt;&lt;/p&gt;&lt;p&gt;Choose whether to use a predefined template or create a custom message. Templates ensure consistent messaging and can include dynamic fields.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
         <name>SMS_Options_Screen</name>
         <label>SMS Options Screen</label>
         <locationX>176</locationX>
-        <locationY>200</locationY>
+        <locationY>250</locationY>
         <allowBack>true</allowBack>
         <allowFinish>false</allowFinish>
         <allowPause>false</allowPause>
@@ -186,7 +284,7 @@
         <name>Success_Screen</name>
         <label>Success Screen</label>
         <locationX>50</locationX>
-        <locationY>600</locationY>
+        <locationY>700</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -202,7 +300,7 @@
         <name>Error_Screen</name>
         <label>Error Screen</label>
         <locationX>302</locationX>
-        <locationY>600</locationY>
+        <locationY>700</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -218,10 +316,25 @@
         <locationX>50</locationX>
         <locationY>0</locationY>
         <connector>
-            <targetReference>SMS_Options_Screen</targetReference>
+            <targetReference>Template_Selection_Screen</targetReference>
         </connector>
     </start>
     <status>Active</status>
+    <dynamicChoiceSets>
+        <name>SMS_Template_Choices</name>
+        <dataType>String</dataType>
+        <displayField>Label</displayField>
+        <object>SMS_Template__mdt</object>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>IsActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <valueField>DeveloperName</valueField>
+    </dynamicChoiceSets>    
     <variables>
         <name>ids</name>
         <dataType>String</dataType>

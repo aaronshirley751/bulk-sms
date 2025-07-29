@@ -1,7 +1,15 @@
 /**
  * @description Aura-enabled controller for bulk SMS functionality
  * @author System Administrator
- * @date 2025-07-28
+ * @date 2025-07-29
+ * @version 3.0 - Cleaned up deprecated Flow patterns and inner classes
+ * 
+ * FLOW INTEGRATION GUIDELINES:
+ * - For Flow integration, use FlowSMSSender.flowSMSSender() with pipe-delimited contextData parameter
+ * - Context Data Format: "contactId1,contactId2,...|||UseTemplate?TemplateName:MessageText|||fromAddress"
+ * - Template Format: "contact1,contact2|||true?Welcome_Template:|||+1234567890"
+ * - Custom Format: "contact1,contact2|||false?:Your custom message|||+1234567890"
+ * - This controller provides LWC integration and utility methods for SMS processing
  */
 public with sharing class BulkSMSController {
     /**
@@ -38,82 +46,6 @@ public with sharing class BulkSMSController {
             });
         }
         return options;
-    }
-    
-    /**
-     * @description Simple invocable method for Flow integration with basic parameters
-     * @param requests List of simple request strings in format: "contactIds|message|fromAddress|templateName"
-     * @return List<String> List of status messages for each request
-     */
-    @InvocableMethod(label='Send Bulk SMS' description='Sends SMS to multiple contacts')
-    public static List<String> sendBulkSMSFromFlow(List<String> requests) {
-        List<String> results = new List<String>();
-        
-        for (String requestData : requests) {
-            try {
-                // Parse the request data: "contactIds|message|fromAddress|templateName"
-                List<String> parts = requestData.split('\\|');
-                if (parts.size() < 3) {
-                    results.add('Error: Invalid request format');
-                    continue;
-                }
-                
-                String contactIdsStr = parts[0];
-                String message = parts[1];
-                String fromAddress = parts[2];
-                String templateName = parts.size() > 3 ? parts[3] : '';
-                
-                // Parse contact IDs
-                List<String> contactIdStrings = contactIdsStr.split(',');
-                List<Id> contactIds = new List<Id>();
-                for (String idStr : contactIdStrings) {
-                    if (String.isNotBlank(idStr.trim())) {
-                        contactIds.add((Id)idStr.trim());
-                    }
-                }
-                
-                if (contactIds.isEmpty()) {
-                    results.add('Error: No valid contact IDs provided');
-                    continue;
-                }
-                
-                // Create FlowRequest to reuse existing logic
-                FlowRequest req = new FlowRequest();
-                req.contactIds = contactIds;
-                req.message = message;
-                req.fromAddress = fromAddress;
-                req.templateName = templateName;
-                
-                // Process the request
-                String finalMessage = req.message;
-                
-                // If template is specified, render it with merge fields
-                if (String.isNotBlank(req.templateName)) {
-                    try {
-                        finalMessage = renderTemplateForContacts(req.templateName, req.contactIds);
-                    } catch (Exception e) {
-                        results.add('Error rendering template: ' + e.getMessage());
-                        continue;
-                    }
-                }
-                
-                // Create bulk SMS request
-                BulkSMSRequest bulkRequest = new BulkSMSRequest();
-                bulkRequest.recordIds = req.contactIds;
-                bulkRequest.messageText = finalMessage;
-                bulkRequest.fromAddress = req.fromAddress;
-                bulkRequest.templateUsed = req.templateName;
-                bulkRequest.campaignId = req.campaignId;
-                
-                String result = sendBulkSMS(bulkRequest);
-                results.add(result);
-                
-            } catch (Exception e) {
-                results.add('Error processing request: ' + e.getMessage());
-            }
-        }
-        
-        return results;
     }
     
     /**
@@ -209,22 +141,10 @@ public with sharing class BulkSMSController {
     }
     
     /**
-     * @description Wrapper class for Flow input parameters
+     * ARCHITECTURE NOTES:
+     * - FlowRequest inner class was removed due to Salesforce Flow constraints with custom types
+     * - sendBulkSMSFromFlow() method was removed as it cannot be reliably called from Flow
+     * - For Flow integration, use FlowSMSSender.flowSMSSender() with string-based contextData
+     * - This approach ensures compatibility with Flow variable type restrictions
      */
-    public class FlowRequest {
-        @InvocableVariable(label='Contact IDs' description='List of Contact IDs to send SMS to' required=true)
-        public List<Id> contactIds;
-        
-        @InvocableVariable(label='SMS Message' description='The SMS message content' required=false)
-        public String message;
-        
-        @InvocableVariable(label='From Address' description='SMS sender address' required=false)
-        public String fromAddress;
-        
-        @InvocableVariable(label='Template Name' description='SMS template developer name to use' required=false)
-        public String templateName;
-        
-        @InvocableVariable(label='Campaign ID' description='Campaign ID for tracking' required=false)
-        public Id campaignId;
-    }
 }

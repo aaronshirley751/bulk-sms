@@ -42,12 +42,12 @@
         <relationshipName>Campaign_SMS_Histories</relationshipName>
     </fields>
     <fields>
-        <fullName>CampaignMember__c</fullName>
+        <fullName>Campaign_Member__c</fullName>
         <label>Campaign Member</label>
         <type>Lookup</type>
-        <referenceTo>CampaignMember</referenceTo>
-        <relationshipLabel>Campaign Member</relationshipLabel>
-        <relationshipName>CampaignMember_SMS_Histories</relationshipName>
+        <referenceTo>Campaign</referenceTo>
+        <relationshipLabel>Campaign Member SMS</relationshipLabel>
+        <relationshipName>Campaign_Member_SMS_Histories</relationshipName>
     </fields>
 
     <!-- Core fields -->

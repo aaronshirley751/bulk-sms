@@ -25,10 +25,10 @@
         <referenceTo>Lead</referenceTo>
     </fields>
     <fields>
-        <fullName>CampaignMember__c</fullName>
-        <label>Campaign Member</label>
+        <fullName>Campaign__c</fullName>
+        <label>Campaign</label>
         <type>Lookup</type>
-        <referenceTo>CampaignMember</referenceTo>
+        <referenceTo>Campaign</referenceTo>
     </fields>
 
     <!-- Core fields -->
