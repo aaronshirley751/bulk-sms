@@ -4,33 +4,11 @@
     <availability>online</availability>
     <displayType>massActionButton</displayType>
     <encodingKey>UTF-8</encodingKey>
-    <linkType>javascript</linkType>
+    <linkType>url</linkType>
     <masterLabel>Bulk SMS</masterLabel>
-    <openType>onClickJavaScript</openType>
+    <openType>newWindow</openType>
+    <position>none</position>
     <protected>false</protected>
     <requireRowSelection>true</requireRowSelection>
-    <url><![CDATA[
-{!REQUIRESCRIPT('/soap/ajax/58.0/connection.js')}
-{!REQUIRESCRIPT('/soap/ajax/58.0/apex.js')}
-
-var selectedRecords = {!GETRECORDIDS($ObjectType.Contact)};
-if (selectedRecords.length == 0) {
-    alert('Please select at least one contact.');
-} else {
-    var message = prompt('Enter SMS message:');
-    if (message != null && message != '') {
-        try {
-            var result = sforce.apex.execute('BulkSMSController', 'sendBulkSMS', {
-                recordIds: selectedRecords,
-                messageText: message,
-                fromAddress: ''
-            });
-            alert('SMS queued successfully: ' + result);
-            location.reload();
-        } catch (e) {
-            alert('Error sending SMS: ' + e.message);
-        }
-    }
-}
-    ]]></url>
+    <url>/flow/Bulk_SMS_Flow?ids={!GETRECORDIDS($ObjectType.Contact)}</url>
 </WebLink>

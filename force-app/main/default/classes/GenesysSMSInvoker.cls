@@ -5,7 +5,7 @@
  */
 public with sharing class GenesysSMSInvoker {
     
-    private static final String NAMED_CREDENTIAL = 'callout:Genesys_Cloud_SMS';
+    private static final String NAMED_CREDENTIAL = 'callout:GenesysSMS';
     
     /**
      * @description Wrapper class for SMS request data
