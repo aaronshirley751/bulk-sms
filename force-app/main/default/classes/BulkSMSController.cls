@@ -3,7 +3,7 @@
  * @author System Administrator
  * @date 2025-07-29
  * @version 3.0 - Cleaned up deprecated Flow patterns and inner classes
- * 
+ *
  * FLOW INTEGRATION GUIDELINES:
  * - For Flow integration, use FlowSMSSender.flowSMSSender() with pipe-delimited contextData parameter
  * - Context Data Format: "contactId1,contactId2,...|||UseTemplate?TemplateName:MessageText|||fromAddress"
@@ -23,7 +23,7 @@ public with sharing class BulkSMSController {
     public static String sendBulkSMSFromLWC(List<Id> recordIds, String messageText, String fromAddress) {
         return sendBulkSMS(recordIds, messageText, fromAddress);
     }
-    
+
     /**
      * @description Returns picklist options for active SMS templates
      * @return List<Map<String,String>> List of template options with label and value
@@ -47,7 +47,7 @@ public with sharing class BulkSMSController {
         }
         return options;
     }
-    
+
     /**
      * @description Enhanced sendBulkSMS method with template and campaign tracking
      * @param request BulkSMSRequest containing all SMS parameters
@@ -56,7 +56,7 @@ public with sharing class BulkSMSController {
     public static String sendBulkSMS(BulkSMSRequest request) {
         return processBulkSMSRequest(request);
     }
-    
+
     /**
      * @description Convenience method for basic bulk SMS without template/campaign
      * @param recordIds List of Contact Ids to send SMS to
@@ -71,7 +71,7 @@ public with sharing class BulkSMSController {
         request.fromAddress = fromAddress;
         return processBulkSMSRequest(request);
     }
-    
+
     /**
      * @description Processes bulk SMS request with reduced parameter complexity
      * @param request BulkSMSRequest containing all SMS parameters
@@ -80,8 +80,8 @@ public with sharing class BulkSMSController {
     private static String processBulkSMSRequest(BulkSMSRequest request) {
         // 1. Query Contacts by recordIds with security check
         List<Contact> contacts = [
-            SELECT Id, Phone, hed__SMS_Opt_Out__c 
-            FROM Contact 
+            SELECT Id, Phone, hed__SMS_Opt_Out__c
+            FROM Contact
             WHERE Id IN :request.recordIds
             WITH USER_MODE
         ];
@@ -110,7 +110,7 @@ public with sharing class BulkSMSController {
         // 4. Return status
         return 'Queued ' + queued + ' messages';
     }
-    
+
     /**
      * @description Wrapper class for bulk SMS request parameters
      */
@@ -121,7 +121,7 @@ public with sharing class BulkSMSController {
         public String templateUsed;
         public Id campaignId;
     }
-    
+
     /**
      * @description Renders template for multiple contacts (simplified for bulk sends)
      * @param templateName Template developer name
@@ -132,14 +132,14 @@ public with sharing class BulkSMSController {
         if (contactIds.isEmpty()) {
             return '';
         }
-        
+
         // For bulk sends, use the first contact's data for merge fields
         SMS_TemplateService.MergeContext ctx = new SMS_TemplateService.MergeContext();
         ctx.contactId = contactIds[0];
-        
+
         return SMS_TemplateService.renderTemplate(templateName, ctx);
     }
-    
+
     /**
      * ARCHITECTURE NOTES:
      * - FlowRequest inner class was removed due to Salesforce Flow constraints with custom types

@@ -4,7 +4,7 @@
  * @date 2025-07-28
  */
 public with sharing class SMS_TemplateService {
-    
+
     /**
      * @description Context class containing merge field data
      */
@@ -29,14 +29,14 @@ public with sharing class SMS_TemplateService {
     public static String renderTemplate(String developerName, MergeContext ctx) {
         // 1. Get template body
         String body = getTemplateBody(developerName);
-        
+
         // 2. Build merge tokens
         Map<String, String> tokens = buildMergeTokens(ctx);
-        
+
         // 3. Replace tokens in template body
         return replaceTokens(body, tokens);
     }
-    
+
     /**
      * @description Retrieves template body from metadata
      * @param developerName The template developer name
@@ -55,7 +55,7 @@ public with sharing class SMS_TemplateService {
         }
         return records[0].Body__c;
     }
-    
+
     /**
      * @description Builds merge tokens from context data
      * @param ctx The merge context containing record IDs
@@ -63,26 +63,26 @@ public with sharing class SMS_TemplateService {
      */
     private static Map<String, String> buildMergeTokens(MergeContext ctx) {
         Map<String, String> tokens = new Map<String, String>();
-        
+
         if (ctx == null) {
             return tokens;
         }
-        
+
         // Add contact tokens
         addContactTokens(ctx, tokens);
-        
-        // Add lead tokens  
+
+        // Add lead tokens
         addLeadTokens(ctx, tokens);
-        
+
         // Add campaign tokens
         addCampaignTokens(ctx, tokens);
-        
+
         // Add extra tokens
         addExtraTokens(ctx, tokens);
-        
+
         return tokens;
     }
-    
+
     /**
      * @description Adds contact-related tokens to the map
      * @param ctx The merge context
@@ -99,7 +99,7 @@ public with sharing class SMS_TemplateService {
             }
         }
     }
-    
+
     /**
      * @description Adds lead-related tokens to the map
      * @param ctx The merge context
@@ -116,7 +116,7 @@ public with sharing class SMS_TemplateService {
             }
         }
     }
-    
+
     /**
      * @description Adds campaign-related tokens to the map
      * @param ctx The merge context
@@ -133,7 +133,7 @@ public with sharing class SMS_TemplateService {
             }
         }
     }
-    
+
     /**
      * @description Adds extra custom tokens to the map
      * @param ctx The merge context
@@ -147,7 +147,7 @@ public with sharing class SMS_TemplateService {
             }
         }
     }
-    
+
     /**
      * @description Replaces tokens in template body with actual values
      * @param body The template body

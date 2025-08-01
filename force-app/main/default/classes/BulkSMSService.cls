@@ -1,6 +1,6 @@
 /**
  * @description Queueable class for sending bulk SMS via GenesysSMSInvoker with comprehensive logging
- * @author System Administrator  
+ * @author System Administrator
  * @date 2025-07-28
  */
 public class BulkSMSService implements Queueable, Database.AllowsCallouts, Finalizer {
@@ -8,17 +8,17 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
      * @description List of SMS requests to process
      */
     private List<GenesysSMSInvoker.SMSRequest> requests;
-    
+
     /**
      * @description Template name used for this batch (if applicable)
      */
     private String templateUsed;
-    
+
     /**
      * @description Campaign ID for tracking (if applicable)
      */
     private Id campaignId;
-    
+
     /**
      * @description SMS Log record ID for batch tracking
      */
@@ -34,7 +34,7 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
         this.campaignId = null;
         this.smsLogId = null;
     }
-    
+
     /**
      * @description Constructor with template and campaign tracking
      * @param requests List of SMS requests to be processed
@@ -55,14 +55,14 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
     public void execute(QueueableContext context) {
         // Add finalizer for error handling
         System.attachFinalizer(this);
-        
+
         // Create SMS Log record for this batch
         this.smsLogId = createSMSLogRecord();
-        
+
         Integer sentCount = 0;
         Integer failedCount = 0;
         List<SMS_History__c> historyRecords = new List<SMS_History__c>();
-        
+
         // Chunk requests into sublists of 50 to respect callout limits
         Integer chunkSize = 50;
         for (Integer i = 0; i < requests.size(); i += chunkSize) {
@@ -71,18 +71,18 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
             for (Integer j = i; j < endIndex; j++) {
                 chunk.add(requests[j]);
             }
-            
+
             // Process each SMS in the chunk
             for (GenesysSMSInvoker.SMSRequest request : chunk) {
                 GenesysSMSInvoker.SMSResponse response = GenesysSMSInvoker.sendSMSWithResponse(
-                    request.phoneNumber, 
+                    request.phoneNumber,
                     request.messageContent
                 );
-                
+
                 // Create SMS History record with enhanced details
                 SMS_History__c history = createSMSHistoryRecord(request, response);
                 historyRecords.add(history);
-                
+
                 if (response.success) {
                     sentCount++;
                 } else {
@@ -91,7 +91,7 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
                 }
             }
         }
-        
+
         // Insert all SMS History records
         if (!historyRecords.isEmpty()) {
             try {
@@ -102,11 +102,11 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
                 // Continue processing without failing the batch
             }
         }
-        
+
         // Update SMS Log record with final counts
         updateSMSLogRecord(sentCount, failedCount);
     }
-    
+
     /**
      * @description Creates an SMS Log record for batch tracking
      * @return Id The SMS Log record ID
@@ -121,7 +121,7 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
             User__c = UserInfo.getUserId(),
             Send_Timestamp__c = System.now()
         );
-        
+
         try {
             insert logRecord;
             return logRecord.Id;
@@ -131,7 +131,7 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
             return null;
         }
     }
-    
+
     /**
      * @description Creates an SMS History record for individual SMS tracking
      * @param request The SMS request
@@ -147,17 +147,17 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
             Sent_Timestamp__c = System.now(),
             Campaign__c = this.campaignId
         );
-        
+
         if (response.success) {
-            history.Response__c = 'Message ID: ' + response.messageId + 
+            history.Response__c = 'Message ID: ' + response.messageId +
                 (String.isNotBlank(response.status) ? ', Status: ' + response.status : '');
         } else {
             history.Error__c = response.error;
         }
-        
+
         return history;
     }
-    
+
     /**
      * @description Updates the SMS Log record with final counts
      * @param sentCount Number of successfully sent SMS
@@ -168,13 +168,13 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
             // No SMS Log record was created, skip update
             return;
         }
-        
+
         SMS_Log__c logRecord = new SMS_Log__c(
             Id = this.smsLogId,
             Sent_Count__c = sentCount,
             Failed_Count__c = failedCount
         );
-        
+
         try {
             update logRecord;
         } catch (Exception e) { //NOPMD EmptyCatchBlock
@@ -182,7 +182,7 @@ public class BulkSMSService implements Queueable, Database.AllowsCallouts, Final
             // In production, could send notification or log to Platform Events
         }
     }
-    
+
     /**
      * @description Finalizer method to handle job completion or failure
      * @param context FinalizerContext provided by the platform
