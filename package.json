@@ -13,7 +13,16 @@
     "test:unit:debug": "sfdx-lwc-jest --debug",
     "test:unit:coverage": "sfdx-lwc-jest --coverage",
     "prettier": "prettier --write \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
-    "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\""
+    "prettier:verify": "prettier --list-different \"**/*.{cls,cmp,component,css,html,js,json,md,page,trigger,xml,yaml,yml}\"",
+    "pmd:install": "wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0/pmd-dist-7.0.0-bin.zip && unzip -o pmd-dist-7.0.0-bin.zip",
+    "pmd:analyze": "pmd check --dir force-app/main/default/classes --rulesets config/pmd-ruleset.xml --format text --cache .pmd-cache",
+    "pmd:analyze:verbose": "pmd check --dir force-app/main/default/classes --rulesets config/pmd-ruleset.xml --format text --cache .pmd-cache --debug",
+    "pmd:fix": "echo 'Review PMD results and fix manually - no auto-fix available'",
+    "validate": "npm run pmd:analyze && npm run test:unit",
+    "deploy:sandbox": "sf project deploy start --source-dir force-app --target-org sandbox",
+    "deploy:validate": "sf project deploy validate --source-dir force-app --target-org sandbox --test-level RunLocalTests",
+    "ci:setup": "npm run pmd:install && husky install",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@prettier/plugin-xml": "^0.12.0",
