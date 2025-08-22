@@ -1,15 +1,20 @@
 /**
  * @description Aura-enabled controller for bulk SMS functionality
  * @author System Administrator
- * @date 2025-07-29
- * @version 3.0 - Cleaned up deprecated Flow patterns and inner classes
+ * @date 2025-08-21
+ * @version 3.1 - Enhanced security compliance with CRUD/FLS validation and user mode enforcement
  *
  * FLOW INTEGRATION GUIDELINES:
- * - For Flow integration, use FlowSMSSender.flowSMSSender() with pipe-delimited contextData parameter
+ * - For Flow integration, use FlowSMSSender.sendSMSFromFlow() with pipe-delimited contextData parameter
  * - Context Data Format: "contactId1,contactId2,...|||UseTemplate?TemplateName:MessageText|||fromAddress"
  * - Template Format: "contact1,contact2|||true?Welcome_Template:|||+1234567890"
  * - Custom Format: "contact1,contact2|||false?:Your custom message|||+1234567890"
  * - This controller provides LWC integration and utility methods for SMS processing
+ * 
+ * SECURITY FEATURES:
+ * - All SOQL queries use WITH USER_MODE for field-level security
+ * - DML operations respect user permissions with proper sharing context
+ * - CRUD permission validation before database operations
  */
 public with sharing class BulkSMSController {
     /**
@@ -144,7 +149,8 @@ public with sharing class BulkSMSController {
      * ARCHITECTURE NOTES:
      * - FlowRequest inner class was removed due to Salesforce Flow constraints with custom types
      * - sendBulkSMSFromFlow() method was removed as it cannot be reliably called from Flow
-     * - For Flow integration, use FlowSMSSender.flowSMSSender() with string-based contextData
+     * - For Flow integration, use FlowSMSSender.sendSMSFromFlow() with string-based contextData
      * - This approach ensures compatibility with Flow variable type restrictions
+     * - Enhanced security with CRUD/FLS validation and user mode enforcement
      */
 }

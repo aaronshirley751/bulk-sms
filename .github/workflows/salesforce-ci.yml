@@ -1,0 +1,80 @@
+name: Salesforce CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate-and-scan:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    # Install Salesforce CLI
+    - name: Install Salesforce CLI
+      run: |
+        wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.xz
+        mkdir ~/sf
+        tar xJf sf-linux-x64.tar.xz -C ~/sf --strip-components 1
+        echo "$HOME/sf/bin" >> $GITHUB_PATH
+    
+    # Authenticate to Sandbox
+    - name: Authenticate to Sandbox
+      run: |
+        echo "${{ secrets.SANDBOX_AUTH_URL }}" > auth.txt
+        sf org login sfdx-url --sfdx-url-file auth.txt --alias sandbox
+        rm auth.txt
+    
+    # Install PMD
+    - name: Install PMD
+      run: |
+        wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F7.0.0/pmd-dist-7.0.0-bin.zip
+        unzip pmd-dist-7.0.0-bin.zip
+        echo "$PWD/pmd-bin-7.0.0/bin" >> $GITHUB_PATH
+    
+    # Run PMD Analysis
+    - name: Run PMD Code Analysis
+      run: |
+        pmd check --dir force-app/main/default/classes \
+          --rulesets config/pmd-ruleset.xml \
+          --format text \
+          --cache .pmd-cache \
+          --no-progress \
+          --fail-on-violation false > pmd-results.txt || true
+        cat pmd-results.txt
+    
+    # Run Apex Tests
+    - name: Deploy and Run Tests
+      run: |
+        sf project deploy validate \
+          --source-dir force-app \
+          --target-org sandbox \
+          --test-level RunLocalTests \
+          --verbose
+    
+    # Upload PMD Results
+    - name: Upload PMD Results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: pmd-results
+        path: pmd-results.txt
+    
+    # Comment on PR with results
+    - name: Comment PMD Results on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const pmdResults = fs.readFileSync('pmd-results.txt', 'utf8');
+          const truncated = pmdResults.substring(0, 65000);
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## PMD Analysis Results\n\`\`\`\n${truncated}\n\`\`\``
+          });

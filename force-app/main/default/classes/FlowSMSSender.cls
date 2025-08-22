@@ -2,9 +2,10 @@
  * @description FlowSMSSender - Simplified Flow-compatible SMS sender using string parameters
  * Provides a single invocable method for sending SMS from Salesforce Flows
  * Uses string concatenation for input to work around Flow limitations
+ * Refactored for reduced cyclomatic complexity with focused helper methods
  *
  * @author System Administrator
- * @version 1.2
+ * @version 1.3 - Refactored for reduced complexity and better separation of concerns
  * @since 2024
  */
 public with sharing class FlowSMSSender {
@@ -17,27 +18,27 @@ public with sharing class FlowSMSSender {
      * @param contextData List of strings with SMS parameters
      * @return List<String> Success or error messages
      */
-    @InvocableMethod(label='Flow SMS Sender' description='Send SMS to multiple contacts from Flow using string parameters')
-    public static List<String> sendSMSFromFlow(List<String> contextData) {
+    @InvocableMethod(label='flowSMSSender' description='Send SMS to multiple contacts from Flow using string parameters')
+    public static List<String> flowSMSSender(List<String> contextData) {
         List<String> results = new List<String>();
 
         try {
-            // Validate and parse input
-            SMSParameters params = parseContextData(contextData);
+            // Parse and validate parameters
+            SMSParameters params = parseAndValidateParameters(contextData);
             if (params.hasError) {
                 results.add(params.errorMessage);
                 return results;
             }
 
-            // Process contacts and send SMS
-            List<Contact> contacts = getContactsWithPhones(params.contactIds);
+            // Get contacts with valid phone numbers
+            List<Contact> contacts = getContactsWithValidPhones(params.contactIds);
             if (contacts.isEmpty()) {
                 results.add('ERROR: No contacts found with phone numbers for provided IDs');
                 return results;
             }
 
-            // Send SMS messages
-            sendSMSToContacts(contacts, params.messageText, params.fromAddress);
+            // Build and send SMS requests
+            buildSMSRequests(contacts, params.messageText, params.fromAddress);
 
             // Return success message
             String successMsg = 'SUCCESS: SMS queued for ' + contacts.size() + ' contacts. Message: "' + params.messageText + '" From: ' + params.fromAddress;
@@ -55,14 +56,14 @@ public with sharing class FlowSMSSender {
     }
 
     /**
-     * @description Parse and validate context data from Flow
+     * @description Parse and validate all input parameters from Flow context data
      * @param contextData Input data from Flow
-     * @return SMSParameters Parsed parameters with validation status
+     * @return SMSParameters Parsed and validated parameters
      */
-    private static SMSParameters parseContextData(List<String> contextData) {
+    private static SMSParameters parseAndValidateParameters(List<String> contextData) {
         SMSParameters params = new SMSParameters();
 
-        // Validate input
+        // Validate input structure
         if (contextData == null || contextData.isEmpty() || String.isBlank(contextData[0])) {
             params.hasError = true;
             params.errorMessage = 'ERROR: No contextData provided. Required format: "contactIds|||message|||fromAddress"';
@@ -77,12 +78,10 @@ public with sharing class FlowSMSSender {
             return params;
         }
 
-        String contactIdsStr = parts[0];
+        // Extract and validate each component
+        params.contactIds = parseContactIds(parts[0]);
         params.messageText = parts[1];
         params.fromAddress = parts[2];
-
-        // Process contact IDs
-        params.contactIds = parseContactIds(contactIdsStr);
 
         // Validate required parameters
         if (params.contactIds.isEmpty()) {
@@ -104,6 +103,56 @@ public with sharing class FlowSMSSender {
         }
 
         return params;
+    }
+
+    /**
+     * @description Query contacts with valid phone numbers and security checks
+     * @param contactIds List of contact IDs to query
+     * @return List<Contact> Contacts with phone numbers
+     */
+    private static List<Contact> getContactsWithValidPhones(List<Id> contactIds) {
+        // Check read permissions for Contact object and required fields
+        if (!Schema.sObjectType.Contact.isAccessible() ||
+            !Schema.sObjectType.Contact.fields.Name.isAccessible() ||
+            !Schema.sObjectType.Contact.fields.MobilePhone.isAccessible() ||
+            !Schema.sObjectType.Contact.fields.Phone.isAccessible() ||
+            !Schema.sObjectType.Contact.fields.Email.isAccessible()) {
+            System.debug(LoggingLevel.ERROR, 'User does not have permission to access Contact records or required fields');
+            return new List<Contact>();
+        }
+        
+        return [
+            SELECT Id, Name, MobilePhone, Phone, Email
+            FROM Contact
+            WHERE Id IN :contactIds
+            AND (MobilePhone != null OR Phone != null)
+            WITH USER_MODE
+        ];
+    }
+
+    /**
+     * @description Build SMS requests and send them via GenesysSMSInvoker
+     * @param contacts Contacts to send SMS to
+     * @param messageText SMS message content
+     * @param fromAddress SMS from address
+     */
+    private static void buildSMSRequests(List<Contact> contacts, String messageText, String fromAddress) {
+        List<GenesysSMSInvoker.SMSRequest> smsRequests = new List<GenesysSMSInvoker.SMSRequest>();
+
+        for (Contact contact : contacts) {
+            GenesysSMSInvoker.SMSRequest smsRequest = new GenesysSMSInvoker.SMSRequest();
+            smsRequest.phoneNumber = String.isNotBlank(contact.MobilePhone) ? contact.MobilePhone : contact.Phone;
+            smsRequest.messageContent = messageText;
+            smsRequest.fromAddress = fromAddress;
+            smsRequest.contactId = contact.Id;
+
+            smsRequests.add(smsRequest);
+            System.debug(LoggingLevel.DEBUG, 'Created SMS request for: ' + contact.Name + ' (' + smsRequest.phoneNumber + ')');
+        }
+
+        // Send SMS using existing GenesysSMSInvoker
+        System.debug(LoggingLevel.INFO, 'Sending SMS to ' + smsRequests.size() + ' contacts via GenesysSMSInvoker');
+        GenesysSMSInvoker.sendSMSFromFlow(smsRequests);
     }
 
     /**
@@ -136,46 +185,6 @@ public with sharing class FlowSMSSender {
         }
 
         return contactIdList;
-    }
-
-    /**
-     * @description Query contacts with phone numbers
-     * @param contactIds List of contact IDs to query
-     * @return List<Contact> Contacts with phone numbers
-     */
-    private static List<Contact> getContactsWithPhones(List<Id> contactIds) {
-        return [
-            SELECT Id, Name, MobilePhone, Phone, Email
-            FROM Contact
-            WHERE Id IN :contactIds
-            AND (MobilePhone != null OR Phone != null)
-            WITH USER_MODE
-        ];
-    }
-
-    /**
-     * @description Send SMS to list of contacts
-     * @param contacts Contacts to send SMS to
-     * @param messageText SMS message content
-     * @param fromAddress SMS from address
-     */
-    private static void sendSMSToContacts(List<Contact> contacts, String messageText, String fromAddress) {
-        List<GenesysSMSInvoker.SMSRequest> smsRequests = new List<GenesysSMSInvoker.SMSRequest>();
-
-        for (Contact contact : contacts) {
-            GenesysSMSInvoker.SMSRequest smsRequest = new GenesysSMSInvoker.SMSRequest();
-            smsRequest.phoneNumber = String.isNotBlank(contact.MobilePhone) ? contact.MobilePhone : contact.Phone;
-            smsRequest.messageContent = messageText;
-            smsRequest.fromAddress = fromAddress;
-            smsRequest.contactId = contact.Id;
-
-            smsRequests.add(smsRequest);
-            System.debug(LoggingLevel.DEBUG, 'Created SMS request for: ' + contact.Name + ' (' + smsRequest.phoneNumber + ')');
-        }
-
-        // Send SMS using existing GenesysSMSInvoker
-        System.debug(LoggingLevel.INFO, 'Sending SMS to ' + smsRequests.size() + ' contacts via GenesysSMSInvoker');
-        GenesysSMSInvoker.sendSMSFromFlow(smsRequests);
     }
 
     /**

@@ -1,0 +1,61 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "PMD Code Analysis",
+            "type": "shell",
+            "command": "npm",
+            "args": ["run", "pmd"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Deploy to Scratch Org",
+            "type": "shell",
+            "command": "sf",
+            "args": ["project", "deploy", "start", "--target-org", "bulksms-scratch"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Run All Tests",
+            "type": "shell",
+            "command": "sf",
+            "args": ["apex", "run", "test", "--test-level", "RunLocalTests", "--result-format", "human"],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Create Scratch Org",
+            "type": "shell",
+            "command": "sf",
+            "args": ["org", "create", "scratch", "--definition-file", "config/project-scratch-def.json", "--alias", "bulksms-scratch"],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

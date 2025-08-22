@@ -116,13 +116,6 @@
             <assignToReference>SMSContextString</assignToReference>
             <operator>Add</operator>
             <value>
-                <elementReference>TemplateMessageText</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>SMSContextString</assignToReference>
-            <operator>Add</operator>
-            <value>
                 <stringValue>|||</stringValue>
             </value>
         </assignmentItems>
@@ -137,54 +130,6 @@
             <targetReference>Send_Bulk_SMS_Action</targetReference>
         </connector>
     </assignments>
-    <assignments>
-        <name>Set_Template_Message</name>
-        <label>Set Template Message</label>
-        <locationX>50</locationX>
-        <locationY>280</locationY>
-        <assignmentItems>
-            <assignToReference>TemplateMessageText</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Get_SMS_Template.Body__c</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Build_Contact_IDs_String</targetReference>
-        </connector>
-    </assignments>
-    <decisions>
-        <name>Check_UseTemplate_Decision</name>
-        <label>Check UseTemplate Decision</label>
-        <locationX>176</locationX>
-        <locationY>120</locationY>
-        <defaultConnector>
-            <targetReference>Check_Message_Type</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Use Custom Message</defaultConnectorLabel>
-        <rules>
-            <name>Template_Selected</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>UseTemplate</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <booleanValue>true</booleanValue>
-                </rightValue>
-            </conditions>
-            <conditions>
-                <leftValueReference>SelectedTemplate</leftValueReference>
-                <operator>IsNull</operator>
-                <rightValue>
-                    <booleanValue>false</booleanValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_SMS_Template</targetReference>
-            </connector>
-            <label>Template Selected</label>
-        </rules>
-    </decisions>
     <decisions>
         <name>Check_Message_Type</name>
         <label>Check Message Type</label>
@@ -210,6 +155,50 @@
             <label>Use Template</label>
         </rules>
     </decisions>
+    <recordLookups>
+        <name>Get_SMS_Template</name>
+        <label>Get SMS Template</label>
+        <locationX>50</locationX>
+        <locationY>200</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Set_Template_Message</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>SelectedTemplate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsActive__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>SMS_Template__mdt</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <assignments>
+        <name>Set_Template_Message</name>
+        <label>Set Template Message</label>
+        <locationX>50</locationX>
+        <locationY>280</locationY>
+        <assignmentItems>
+            <assignToReference>MessageText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_SMS_Template.Body__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Build_Contact_IDs_String</targetReference>
+        </connector>
+    </assignments>
     <decisions>
         <name>Check_Results</name>
         <label>Check Results</label>
@@ -251,7 +240,38 @@
             <targetReference>Create_Context_String</targetReference>
         </noMoreValuesConnector>
     </loops>
-    <processType>Flow</processType>
+    <decisions>
+        <name>Check_UseTemplate_Decision</name>
+        <label>Check UseTemplate Decision</label>
+        <locationX>176</locationX>
+        <locationY>120</locationY>
+        <defaultConnector>
+            <targetReference>Check_Message_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Use Custom Message</defaultConnectorLabel>
+        <rules>
+            <name>Template_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>UseTemplate</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>SelectedTemplate</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_SMS_Template</targetReference>
+            </connector>
+            <label>Template Selected</label>
+        </rules>
+    </decisions>
     <recordLookups>
         <name>Get_SMS_Template</name>
         <label>Get SMS Template</label>
@@ -280,6 +300,23 @@
         <object>SMS_Template__mdt</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
+    <assignments>
+        <name>Set_Template_Message</name>
+        <label>Set Template Message</label>
+        <locationX>50</locationX>
+        <locationY>280</locationY>
+        <assignmentItems>
+            <assignToReference>MessageText</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_SMS_Template.Body__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Build_Contact_IDs_String</targetReference>
+        </connector>
+    </assignments>
+    <processType>Flow</processType>
     <screens>
         <name>Template_Selection_Screen</name>
         <label>Template Selection Screen</label>
@@ -441,13 +478,6 @@
     </variables>
     <variables>
         <name>CurrentContactId</name>
-        <dataType>String</dataType>
-        <isCollection>false</isCollection>
-        <isInput>false</isInput>
-        <isOutput>false</isOutput>
-    </variables>
-    <variables>
-        <name>TemplateMessageText</name>
         <dataType>String</dataType>
         <isCollection>false</isCollection>
         <isInput>false</isInput>

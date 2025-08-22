@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Salesforce Apex Ruleset"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 
+         https://pmd.sourceforge.io/ruleset_2_0_0.xsd">
+    
+    <description>Custom Salesforce Apex PMD Rules for Bulk SMS Project</description>
+    
+    <!-- Security Rules -->
+    <rule ref="category/apex/security.xml">
+        <priority>1</priority>
+    </rule>
+    
+    <!-- Performance Rules -->
+    <rule ref="category/apex/performance.xml">
+        <priority>2</priority>
+    </rule>
+    
+    <!-- Best Practices -->
+    <rule ref="category/apex/bestpractices.xml">
+        <priority>3</priority>
+        <exclude name="ApexUnitTestClassShouldHaveAsserts"/>
+    </rule>
+    
+    <!-- Design Rules with Custom Thresholds -->
+    <rule ref="category/apex/design.xml/CyclomaticComplexity">
+        <priority>2</priority>
+        <properties>
+            <property name="classReportLevel" value="10"/>
+            <property name="methodReportLevel" value="10"/>
+        </properties>
+    </rule>
+    
+    <rule ref="category/apex/design.xml/ExcessiveParameterList">
+        <priority>3</priority>
+        <properties>
+            <property name="minimum" value="5"/>
+        </properties>
+    </rule>
+    
+    <!-- Error Prone Rules -->
+    <rule ref="category/apex/errorprone.xml">
+        <priority>2</priority>
+        <exclude name="EmptyStatementBlock"/>
+    </rule>
+    
+    <!-- Documentation Rules -->
+    <rule ref="category/apex/documentation.xml/ApexDoc">
+        <priority>4</priority>
+        <properties>
+            <property name="reportPrivate" value="false"/>
+            <property name="reportProtected" value="false"/>
+        </properties>
+    </rule>
+</ruleset>

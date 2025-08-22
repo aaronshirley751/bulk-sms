@@ -76,6 +76,12 @@ public with sharing class GenesysSMSInvoker {
                 history.Error__c = response.error;
             }
 
+            // Check CRUD permissions before DML
+            if (!Schema.sObjectType.SMS_History__c.isCreateable()) {
+                System.debug(LoggingLevel.ERROR, 'User does not have permission to create SMS_History__c records');
+                return;
+            }
+
             insert as user history;
 
         } catch (Exception e) {
@@ -87,6 +93,13 @@ public with sharing class GenesysSMSInvoker {
                 Error__c = 'Exception: ' + e.getMessage(),
                 Sent_Timestamp__c = System.now()
             );
+            
+            // Check CRUD permissions before DML
+            if (!Schema.sObjectType.SMS_History__c.isCreateable()) {
+                System.debug(LoggingLevel.ERROR, 'User does not have permission to create SMS_History__c records');
+                return;
+            }
+            
             insert as user history;
 
             System.debug(LoggingLevel.ERROR, 'SMS sending failed: ' + e.getMessage());
