@@ -1,0 +1,22 @@
+{
+  "pmd": {
+    "criticalViolations": {
+      "security": 0,
+      "performance": 5,
+      "design": 10
+    },
+    "warningThresholds": {
+      "totalViolations": 50,
+      "complexityScore": 15
+    }
+  },
+  "coverage": {
+    "minimum": 75,
+    "target": 85
+  },
+  "deployment": {
+    "requireCodeReview": true,
+    "requireTests": true,
+    "blockOnCriticalPMD": true
+  }
+}
