@@ -2,10 +2,54 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "PMD Code Analysis",
+            "label": "PMD: Analyze Current File",
+            "type": "shell",
+            "command": "pmd",
+            "args": [
+                "check",
+                "--dir", "${file}",
+                "--rulesets", "config/pmd-ruleset.xml",
+                "--format", "text",
+                "--no-cache"
+            ],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            },
+            "problemMatcher": {
+                "owner": "apex",
+                "fileLocation": ["relative", "${workspaceFolder}"],
+                "pattern": {
+                    "regexp": "^(.+):(\\d+):\\s+(.+)$",
+                    "file": 1,
+                    "line": 2,
+                    "message": 3
+                }
+            }
+        },
+        {
+            "label": "PMD: Analyze All Classes",
+            "type": "shell",
+            "command": "pmd",
+            "args": [
+                "check",
+                "--dir", "force-app/main/default/classes",
+                "--rulesets", "config/pmd-ruleset.xml",
+                "--format", "text",
+                "--cache", ".pmd-cache"
+            ],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "PMD Code Analysis (npm)",
             "type": "shell",
             "command": "npm",
-            "args": ["run", "pmd"],
+            "args": ["run", "pmd:analyze"],
             "group": "build",
             "presentation": {
                 "echo": true,
@@ -14,6 +58,22 @@
                 "panel": "shared"
             },
             "problemMatcher": []
+        },
+        {
+            "label": "Deploy to Sandbox with Tests",
+            "type": "shell",
+            "command": "sf",
+            "args": [
+                "project", "deploy", "start",
+                "--source-dir", "force-app",
+                "--target-org", "sandbox",
+                "--test-level", "RunLocalTests"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
         },
         {
             "label": "Deploy to Scratch Org",
