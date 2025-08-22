@@ -10,3 +10,11 @@ package.xml
 
 # LWC Jest
 **/__tests__/**
+# Backup directories
+**/lwc_backup/**
+
+# Corrupted or empty metadata files
+**/namedCredentials/Genesys_Cloud_SMS.namedCredential-meta.xml
+**/flows/Bulk_SMS_Screen_Flow.flow-meta.xml
+**/lwc/bulkSmsMassAction/**
+**/lwc/listViewBulkSms/**

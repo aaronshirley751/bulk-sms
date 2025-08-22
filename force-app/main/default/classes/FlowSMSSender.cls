@@ -18,8 +18,8 @@ public with sharing class FlowSMSSender {
      * @param contextData List of strings with SMS parameters
      * @return List<String> Success or error messages
      */
-    @InvocableMethod(label='flowSMSSender' description='Send SMS to multiple contacts from Flow using string parameters')
-    public static List<String> flowSMSSender(List<String> contextData) {
+    @InvocableMethod(label='sendSMS' description='Send SMS to multiple contacts from Flow using string parameters')
+    public static List<String> sendSMS(List<String> contextData) {
         List<String> results = new List<String>();
 
         try {
@@ -43,7 +43,6 @@ public with sharing class FlowSMSSender {
             // Return success message
             String successMsg = 'SUCCESS: SMS queued for ' + contacts.size() + ' contacts. Message: "' + params.messageText + '" From: ' + params.fromAddress;
             results.add(successMsg);
-            System.debug(LoggingLevel.INFO, 'FlowSMSSender Success: ' + successMsg);
 
         } catch (Exception e) {
             String errorMsg = 'ERROR: ' + e.getMessage();
@@ -147,11 +146,9 @@ public with sharing class FlowSMSSender {
             smsRequest.contactId = contact.Id;
 
             smsRequests.add(smsRequest);
-            System.debug(LoggingLevel.DEBUG, 'Created SMS request for: ' + contact.Name + ' (' + smsRequest.phoneNumber + ')');
         }
 
         // Send SMS using existing GenesysSMSInvoker
-        System.debug(LoggingLevel.INFO, 'Sending SMS to ' + smsRequests.size() + ' contacts via GenesysSMSInvoker');
         GenesysSMSInvoker.sendSMSFromFlow(smsRequests);
     }
 

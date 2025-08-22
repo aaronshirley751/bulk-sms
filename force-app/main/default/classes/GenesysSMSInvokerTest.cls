@@ -11,7 +11,6 @@ public class GenesysSMSInvokerTest {
     static void makeData() {
         // Due to potential trigger issues with Contact creation in test context,
         // we'll handle contact creation within individual test methods as needed
-        System.debug(LoggingLevel.DEBUG, 'Test setup initialized - contacts will be created per test');
     }
 
     /**

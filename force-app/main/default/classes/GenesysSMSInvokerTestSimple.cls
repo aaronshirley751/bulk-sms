@@ -10,7 +10,6 @@ public class GenesysSMSInvokerTestSimple {
     @TestSetup
     static void makeData() {
         // Test setup without Contact creation due to trigger constraints
-        System.debug(LoggingLevel.DEBUG, 'Test setup initialized');
     }
 
     @isTest
